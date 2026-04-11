@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .typewriter-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 50px;
+    color: #333;
+}
+
+#typewriter-text {
+    color: #175089; /* اللون الأزرق الذي طلبته سابقاً */
+    font-weight: bold;
+}
+
+.cursor {
+    color: #b59410; /* اللون الذهبي */
+    font-weight: bold;
+    animation: blink 0.7s infinite; /* حركة الوميض */
+}
+
+/* تحريك المؤشر ليظهر ويختفي */
+@keyframes blink {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+    </style>
+</head>
+<body>
+    <div class="typewriter-container">
+    <h1>نحن نقدم <span id="typewriter-text"></span><span class="cursor">|</span></h1>
+</div>
+</body>
+<script>
+    // الكلمات التي سيتم كتابتها وحذفها
+const words = ["توثيق الخبرات", "تكويناً معتمداً.", "تطوير للمهارات","دراسه في مختلف المجالات"];
+
+let wordIndex = 0; // لتعقب الكلمة الحالية
+let charIndex = 0; // لتعقب الحرف الحالي
+let isDeleting = false; // لمعرفة ما إذا كان الكود يكتب أم يحذف
+const textElement = document.getElementById("typewriter-text");
+
+function typeEffect() {
+    const currentWord = words[wordIndex];
+    
+    if (isDeleting) {
+        // حذف حرف
+        textElement.textContent = currentWord.substring(0, charIndex - 1);
+        charIndex--;
+    } else {
+        // كتابة حرف
+        textElement.textContent = currentWord.substring(0, charIndex + 1);
+        charIndex++;
+    }
+
+    // تحديد سرعة الكتابة والحذف (الحذف يكون أسرع عادة)
+    let typingSpeed = isDeleting ? 50 : 100;
+
+    // إذا اكتملت كتابة الكلمة
+    if (!isDeleting && charIndex === currentWord.length) {
+        typingSpeed = 2000; // التوقف لمدة ثانيتين قبل بدء الحذف
+        isDeleting = true;
+    } 
+    // إذا اكتمل حذف الكلمة
+    else if (isDeleting && charIndex === 0) {
+        isDeleting = false;
+        wordIndex++; // الانتقال للكلمة التالية
+        
+        // إذا وصلنا لآخر كلمة، نعود للأولى
+        if (wordIndex === words.length) {
+            wordIndex = 0; 
+        }
+        typingSpeed = 500; // التوقف قليلاً قبل بدء كتابة الكلمة الجديدة
+    }
+
+    // استدعاء الدالة مرة أخرى بعد الوقت المحدد
+    setTimeout(typeEffect, typingSpeed);
+}
+
+// بدء التأثير عند تحميل الصفحة
+document.addEventListener("DOMContentLoaded", function() {
+    setTimeout(typeEffect, 1000); // تأخير ثانية واحدة قبل البدء
+});
+</script>
+</html>

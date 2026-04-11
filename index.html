@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sanabel Academy - Certification</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            /* تطبيق الألوان المطلوبة: الأبيض والأصفر (الذهبي) */
+            --primary-color: #ffffff; /* لون النصوص الأساسي */
+            --accent-color: #175089; /* اللون الأصفر/الذهبي للأكاديمية */
+            --bg-gradient: #ffffff; /* خلفية بيضاء */
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Cairo', sans-serif;
+            /* تم إزالة outline الأحمر */
+        }
+
+        body {
+            background: var(--bg-gradient);
+            min-height: 100vh;
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            border-radius: 20px;
+            overflow: hidden;
+            animation: fadeIn 0.8s ease-in-out;
+            border: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* أنيميشن لظهور الصفحة */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        img {
+            width: 500px;
+            height: auto;
+            margin: auto;
+            transition: transform 0.3s ease;
+        }
+
+        #inputs {
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        #inputs input {
+            padding: 12px 20px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            width: 250px;
+        }
+
+        #inputs input:focus {
+            border-color: var(--accent-color);
+            outline: none;
+        }
+
+        #inputs button {
+            padding: 12px 30px;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        #inputs button:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 10px rgba(181, 148, 16, 0.3);
+        }
+
+        #result {
+            padding: 30px;
+            animation: slideUp 0.5s ease-out;
+            width: 100%;
+            display: none; /* إخفاء النتائج في البداية */
+            color: #1a1a1a;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        #info {
+            background: white;
+            padding: 25px;
+            border-radius: 12px;
+            outline: 1px solid #000;
+            border-right: 5px solid var(--accent-color);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            
+        }
+
+        #info span {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #000000;
+            font-size: 18px;
+            color: #000000;
+        }
+
+        #info p {
+            color: #000;
+            font-weight: bold;
+        }
+
+        #backImg {
+            height: 100vh;
+            width: 50%;
+            align-self: center;
+            border-left: 10px solid var(--accent-color);
+            object-fit: cover;
+        }
+
+        #wlcoming {
+            position: absolute;
+            top: 30px;
+            margin: 30px;
+            color: var(--primary-color);
+            text-shadow: 1px 1px 5px rgba(255,255,255,0.8);
+        }
+
+        #littl-info {
+            position: absolute;
+            top: 100px;
+            margin: 30px;
+            color: var(--primary-color);
+            max-width: 40%;
+        }
+
+        .typewriter-container {
+            position: absolute;
+            top: 300px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 50px;
+            color: var(--primary-color);
+            margin-right: 50px;
+        }
+
+        #typewriter-text {
+            color: #ffea00;
+            font-weight: bold;
+        }
+
+        .cursor {
+            color: #ffea00;
+            font-weight: bold;
+            animation: blink 0.7s infinite;
+        }
+
+        @keyframes blink {
+            0% { opacity: 1; }
+            50% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        #degree {
+            height: auto;
+            width: 100%;
+            max-width: 800px;
+            display: none;
+            color: #1a1a1a;
+        }
+
+        #up_logo {
+            position: absolute;
+            top: 0;
+            align-self: center;
+            width: 300px;
+        }
+
+        /* =========================================
+           إعدادات التجاوب (Media Queries) للشاشات الصغيرة
+           ========================================= */
+        @media (max-width: 768px) {
+            body {
+                flex-direction: column;
+                justify-content: flex-start;
+            }
+
+            #backImg {
+                width: 100%;
+                height: 250px;
+                border-left: none;
+                border-bottom: 5px solid var(--accent-color);
+                order: -1; /* جعل الصورة في الأعلى بالهواتف */
+                display: none;
+            }
+
+            /* إلغاء التموضع المطلق (Absolute) في الهواتف لترتيب العناصر بشكل طبيعي */
+            #wlcoming, #littl-info, .typewriter-container {
+                position: relative;
+                top: auto;
+                margin: 15px auto;
+                max-width: 90%;
+                text-align: center;
+                display: none;
+            }
+
+            #up_logo {
+                top:0;
+            }
+
+            .container {
+                margin-top: 100px;
+            }
+
+            #inputs {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            #inputs input, #inputs button {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            img {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            #info span {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body id="body">
+    <h1 id="wlcoming" class="deails">مرحبا بك في حسابك الخاص</h1>
+    <p id="littl-info" class="deails">نظام أكاديمي ومعلوماتي يهدف إلى تطوير وصقل مهارات الشباب وتوثيقها، نظام تدريبات من دروس وموثق.</p>
+    
+    <div class="typewriter-container">
+        <h1>نحن نقدم <span id="typewriter-text"></span><span class="cursor">|</span></h1>
+    </div>
+    
+    <img src="_.jpeg" alt="" srcset="" id="backImg" class="deails">
+    
+    <div class="container">
+        <img src="loop-Photoroom.png" alt="" srcset="" id="up_logo">
+        <img src="Screenshot 2026-04-05 7.23.30 PM-Photoroom.png" alt="Logo">
+
+        <div id="inputs">
+            <input type="text" placeholder="اسم المستخدم" id="username">
+            <input type="text" placeholder="رقم البطاقة الوطنية (CIN)" id="CIN">
+            <button id="searsh">بحث</button>
+        </div>
+        
+        <div id="err" style="align-self: center;color: red; display: none; margin-top: 10px; font-weight: bold;">
+            اسم المستخدم هذا أو رقم البطاقة الوطنية غير موجود
+        </div>
+    </div>
+    
+    <div id="degree">
+        <div id="result">
+            <div id="info">
+                <span>الاسم الكامل: <p id="name"></p></span>
+                <span>رقم البطاقة: <p id="CIN_info"></p></span>
+                <span>التخصص: <p id="specialization"></p></span>
+                <span>المدة: <p id="dure"></p></span>
+                <span>تاريخ الانضمام: <p id="join"></p></span>
+                <span>تاريخ التخرج: <p id="end"></p></span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+         let dataUser = [
+        {
+           name: 'Ayoub Marnoufi',
+           CIN: 'HH105366',
+           specialization:'Responsable QHSE',
+           dure:'1',
+           dateJoin:'03/15/2025',
+           dateEnd:'15/03/2026' 
+        }, {
+           name: 'Fatima ezzahra Fax',
+           CIN: 'N440951',
+           specialization:'aide-soignante',
+           dure:'2 mois',
+           dateJoin:'01/10/2025',
+           dateEnd:'1/01/2026' 
+        }, {
+           name: 'Saleh Mikh Lbadaoui',
+           CIN: 'V322437',
+           specialization:'Coiffure-Hommes &  Femmes',
+           dure:'6 mois',
+           dateJoin:'01/9/2025',
+           dateEnd:'1/02/2026' 
+        },{
+           name: 'Jamila Atmani',
+           CIN: 'S511832',
+           specialization:'Techniques de peinture',
+           dure:'12 mois',
+           dateJoin:'01/3/2019',
+           dateEnd:'1/03/2020' 
+        },{
+           name: 'Laila Lebouihi',
+           CIN: 'HH189408',
+           specialization:'Assistont Socail',
+           dure:'12 mois',
+           dateJoin:'01/1/2025',
+           dateEnd:'1/01/2026' 
+        },
+        
+    ];
+
+        document.getElementById('searsh').addEventListener('click', () => {
+            // جلب القيم من المدخلات
+            let inputName = document.getElementById('username').value;
+            let inputCIN = document.getElementById('CIN').value;
+
+            let found = false; // متغير للتأكد هل وجدنا المستخدم أم لا
+
+            for (let i = 0; i < dataUser.length; i++) {
+                // المقارنة
+                if (dataUser[i].name === inputName && dataUser[i].CIN === inputCIN) {
+                    console.log("تم العثور على: " + dataUser[i].name);
+
+                    // إظهار مربع النتيجة
+                    document.getElementById("result").style.display = "block";
+
+                    // تعبئة البيانات
+                     document.getElementById('name').innerHTML =  dataUser[i].name;
+                     document.getElementById('CIN_info').innerHTML =  dataUser[i].CIN;
+                     document.getElementById('specialization').innerHTML =  dataUser[i].specialization;
+                     document.getElementById('dure').innerHTML =  dataUser[i].dure;
+                     document.getElementById('join').innerHTML =  dataUser[i].dateJoin;
+                     document.getElementById('end').innerHTML =  dataUser[i].dateEnd;
+                    
+                    found = true;
+                    document.getElementById('body').style.justifyContent = 'center';
+                    document.getElementById('degree').style.display = 'flex';
+                    document.querySelector('.typewriter-container').style.display = 'none';
+                    document.getElementById('littl-info').style.display = 'none';
+                    document.getElementById('backImg').style.display = 'none';
+                    document.querySelector('.deails').style.display = 'none';
+                    document.getElementById('err').style.display = 'none';
+                    document.querySelector('.container').style.display = 'none';
+                    break; // نوقف الحلقة لأننا وجدنا المستخدم
+                }
+            }
+
+            if (!found) {
+                document.getElementById('err').style.display = 'flex';
+                document.getElementById("result").style.display = "none";
+            }
+        });
+    </script>
+    <script>
+        // الكلمات التي سيتم كتابتها وحذفها
+        const words = ["توثيق الخبرات.", "تكويناً معتمداً.", "تطوير للمهارات.", "دراسة تكوينية."];
+
+        let wordIndex = 0; 
+        let charIndex = 0; 
+        let isDeleting = false; 
+        const textElement = document.getElementById("typewriter-text");
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+
+            if (isDeleting) {
+                // حذف حرف
+                textElement.textContent = currentWord.substring(0, charIndex - 1);
+                charIndex--;
+            } else {
+                // كتابة حرف
+                textElement.textContent = currentWord.substring(0, charIndex + 1);
+                charIndex++;
+            }
+
+            let typingSpeed = isDeleting ? 50 : 100;
+
+            if (!isDeleting && charIndex === currentWord.length) {
+                typingSpeed = 2000; 
+                isDeleting = true;
+            }
+            else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex++; 
+
+                if (wordIndex === words.length) {
+                    wordIndex = 0;
+                }
+                typingSpeed = 500; 
+            }
+
+            setTimeout(typeEffect, typingSpeed);
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            setTimeout(typeEffect, 1000); 
+        });
+    </script>
+
+</body>
+</html>
