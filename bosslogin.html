@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - أكاديمية سنابل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #0a3d62;
+            --accent: #f39c12;
+            --bg: #f1f4f7;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background-color: var(--bg);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .login-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 350px;
+           
+            
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            text-align: center;
+            transition: border-color 0.3s;
+        }
+
+        input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+          
+        }
+
+        button:hover {
+            background-color: #0d4d7d;
+        }
+
+        #error-msg {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="login-card">
+        <div class="logo">أكاديمية سنابل</div>
+        <p>يرجى إدخال رمز الدخول الخاص</p>
+
+        <input type="password" id="accessCode" placeholder="أدخل الكود هنا...">
+        <button onclick="checkAccess()">دخول</button>
+
+        <p id="error-msg">❌ الرمز غير صحيح، حاول مرة أخرى.</p>
+    </div>
+
+    <script>
+        function checkAccess() {
+            const codeInput = document.getElementById('accessCode').value;
+            const codeInputMatrix = { usercode: codeInput }
+            fetch('/secretcode', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(codeInputMatrix)
+
+            })
+                .then(response => response.json())
+                .then(response => {
+                    if (response === true) {
+                        sessionStorage.setItem('isLoggedIn', 'true');
+                        window.location.href = "respons.html";
+                    } else {
+                        document.getElementById('error-msg').style.display = 'block';
+                        document.getElementById('accessCode').value = '';
+                    }
+                })
+
+
+            /*const SECRET_CODE = "SANABEL2026"; // يمكنك تغيير الكود لما تريد
+
+            if (codeInput === SECRET_CODE) {
+                // حفظ الحالة في المتصفح ليعرف أنك سجلت الدخول
+                sessionStorage.setItem('isLoggedIn', 'true');
+                window.location.href = "respons.html"; // اسم صفحتك الرئيسية
+            } else {
+                document.getElementById('error-msg').style.display = 'block';
+                document.getElementById('accessCode').value = '';
+            }*/
+        }
+    </script>
+</body>
+
+</html>

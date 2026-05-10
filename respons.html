@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة تحكم أكاديمية سنابل</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Inter:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a3d62;
+            /* أزرق عميق للياقة والثقة */
+            --accent-color: #f39c12;
+            /* ذهبي يرمز للسنابل والنجاح */
+            --bg-color: #f8f9fa;
+            --text-color: #2d3436;
+            --white: #ffffff;
+            --danger: #e74c3c;
+            --success: #27ae60;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        #container {
+            max-width: 1100px;
+            margin: 0 auto;
+            background: var(--white);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        p.main-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 3px solid var(--accent-color);
+            display: inline-block;
+            width: 100%;
+            padding-bottom: 10px;
+        }
+
+        /* تنسيق قسم الإدخال */
+        #inputs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 15px;
+            background: #f1f4f7;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 40px;
+            align-items: end;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .input-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(10, 61, 98, 0.1);
+        }
+
+        #save {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: background 0.3s ease;
+            height: 45px;
+        }
+
+        #save:hover {
+            background-color: #0d4d7d;
+            box-shadow: 0 4px 12px rgba(10, 61, 98, 0.2);
+        }
+
+        /* تنسيق شريط البحث */
+        .search-container {
+            grid-column: 1 / -1;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        #searchVAL {
+            padding-right: 40px;
+            border: 2px solid #e0e0e0;
+        }
+
+        /* تنسيق الجدول (Output) */
+        #outputTitle {
+            display: grid;
+            grid-template-columns: 0.5fr 2fr 1.5fr 2fr 1.5fr 1.5fr 1fr 1fr;
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 15px 10px;
+            border-radius: 8px 8px 0 0;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        #output {
+            border: 1px solid #eee;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            
+            overflow: auto;
+            max-height: 400px;
+        }
+
+        .clumn {
+            display: grid;
+            grid-template-columns: 0.5fr 2fr 1.5fr 2fr 1.5fr 1.5fr 1fr 1fr;
+            padding: 15px 10px;
+            border-bottom: 1px solid #f1f1f1;
+            transition: background 0.2s ease;
+            align-items: center;
+            text-align: center;
+        }
+
+        .clumn:hover {
+            background-color: #fdfcf0;
+        }
+
+        .clumn:last-child {
+            border-bottom: none;
+        }
+
+        /* أيقونات الأزرار */
+        .action-icon {
+            width: 24px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .action-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .delete-btn {
+            color: var(--danger);
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #joinDate,
+        #endDate {
+            height: 40px;
+        }
+
+        /* تحسين التجاوب مع الجوال */
+        @media (max-width: 768px) {
+            #outputTitle {
+                display: none;
+            }
+
+            .clumn {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+                text-align: right;
+                border: 1px solid #eee;
+                margin-bottom: 10px;
+                border-radius: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <p class="main-title">إدارة بيانات أكاديمية سنابل</p>
+
+        <div id="inputs">
+            <div class="input-group">
+                <label>اسم الطالب</label>
+                <input type="text" id="name" placeholder="أدخل الاسم الكامل">
+            </div>
+            <div class="input-group">
+                <label>رقم CIN</label>
+                <input type="text" id="CIN" placeholder="000000">
+            </div>
+            <div class="input-group">
+                <label>التخصص</label>
+                <input type="text" id="INFO" placeholder="...التخصص">
+            </div>
+            <div class="input-group">
+                <label>تاريخ الانضمام</label>
+                <input type="date" id="joinDate">
+            </div>
+            <div class="input-group">
+                <label>تاريخ الانتهاء</label>
+                <input type="date" id="endDate">
+            </div>
+
+            <button id="save" onclick="creatData()">حفظ البيانات</button>
+
+            <div class="search-container">
+                <input type="search" placeholder="🔍 ابحث عن طالب بالاسم أو الرقم..." onkeyup="search(this.value)"
+                    id="searchVAL">
+            </div>
+        </div>
+
+        <div id="outputTitle">
+            <div>ID</div>
+            <div>الاسم</div>
+            <div>CIN</div>
+            <div>المعلومات</div>
+            <div>البداية</div>
+            <div>النهاية</div>
+            <div>تعديل</div>
+            <div>حذف</div>
+        </div>
+
+        <div id="output">
+        </div>
+    </div>
+    <script>
+        let name = document.getElementById('name')
+        let CIN = document.getElementById('CIN')
+        let INFO = document.getElementById('INFO')
+        let joinDate = document.getElementById('joinDate')
+        let endDate = document.getElementById('endDate')
+
+        let buttonStatue = 'save';
+        let dataArr = []
+        let dataSave = []
+        let idTarget = '';
+        let button = document.getElementById('save')
+
+        /*C R U D S*/
+
+        //read
+        const getData = () => {
+            fetch('/getData')
+                .then(response => response.json())
+                .then(data => {
+                    if (buttonStatue === 'save') {
+                        dataSave = [data];
+                        document.getElementById('output').innerHTML = ''
+                        for (let i = 0; i < data.length; i++) {
+
+                            document.getElementById('output').innerHTML += `
+             <div class="clumn">
+                <div class="id" >${i + 1}</div>
+                <div id="name_output">${data[i].name}</div>
+                <div class="CIN_output">${data[i].CIN}</div>
+                  <div class="INFO_output">${data[i].INFO}</div>
+              <div class="joinDate_output">${data[i].joinDate}</div>
+              <div class="endDate_output">${data[i].endDate}</div>
+                 <div class="update_output"><img src="icons8-write-24.png" alt="Update" onclick="update(${i})"></div>
+                <div class="delet_output"><img src="icons8-trash-24.png" alt="Delete" onclick="deleteData('${data[i]._id}')"></div>
+            </div>
+            `
+                        }
+
+
+                    } else if (buttonStatue === 'update') {
+                        document.getElementById('output').innerHTML = ''
+                        for (let i = 0; i < data.length; i++) {
+
+                            document.getElementById('output').innerHTML += `
+             <div class="clumn">
+                <div class="id">${i + 1}</div>
+                <div id="name_output">${data[i].name}</div>
+                <div class="CIN_output">${data[i].CIN}</div>
+                  <div class="INFO_output">${data[i].INFO}</div>
+              <div class="joinDate_output">${data[i].joinDate}</div>
+              <div class="endDate_output">${data[i].endDate}</div>
+                 <div class="update_output"><img src="icons8-write-24.png" alt="Update" onclick="update(${i})"></div>
+               <div class="delet_output"><img src="icons8-trash-24.png" alt="Delete" onclick="deleteData(${i})"></div>
+            </div>
+            `
+                        }
+                        buttonStatue = 'save'
+                        button.innerHTML = 'save'
+                        name.value = ''
+                        CIN.value = ''
+                        INFO.value = ''
+                        joinDate.value = ''
+                         endDate.value = ''
+                    }
+
+
+
+
+                })
+        }
+        getData()
+        //create
+        async function creatData() {
+            if (buttonStatue === 'save' && name.value !== '' && CIN.value !== '') {
+                const payload = {
+                    data: [{
+                        name: name.value,
+                        CIN: CIN.value,
+                        INFO: INFO.value,
+                        joinDate: joinDate.value,
+                        endDate: endDate.value,
+
+                    }]
+                }
+
+                try {
+                    const dataResponse = await fetch('/new/data', {
+                        method: 'POST',
+                        headers: {
+                            'content-type': 'application/json'
+                        },
+
+                        body: JSON.stringify(
+                            payload
+                        )
+                    })
+                    let response = await dataResponse.text()
+                    
+                } catch (error) {
+                 
+                }
+                getData()
+            } else if (buttonStatue === 'update') {
+
+            }
+            else {
+                alert('please fill the inputs')
+            }
+
+        }
+        //update
+
+        function update(id) {
+            buttonStatue = 'update'
+
+            
+            name.value = dataSave[0][id].name;
+            CIN.value = dataSave[0][id].CIN;
+            INFO.value = dataSave[0][id].INFO;
+            joinDate.value = dataSave[0][id].joinDate
+            endDate.value = dataSave[0][id].endDate
+            button.innerHTML = 'update'
+
+
+            button.addEventListener('click', async () => {
+                if (buttonStatue === 'update') {
+                    dataSave[0][id].name = name.value
+                    dataSave[0][id].CIN = CIN.value
+                    dataSave[0][id].INFO = INFO.value
+                    dataSave[0][id].joinDate = joinDate.value
+                    dataSave[0][id].endDate = endDate.value
+                    const dataToUbdate = {
+                        data: [{
+                            id: dataSave[0][id]._id,
+                            name: name.value,
+                            CIN: CIN.value,
+                            INFO: INFO.value,
+                            joinDate: joinDate.value,
+                            endDate: endDate.value
+                        }]
+
+                    }
+
+                    try {
+                        const dataResponse = await fetch('/update/data', {
+                            method: 'PUT',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+
+                            body: JSON.stringify(
+                                dataToUbdate
+                            )
+                        }
+
+                        )
+                        let response = await dataResponse.text()
+                        
+                    } catch (error) {
+                        console.error('error in update:')
+                    }
+                    idTarget = id
+                    getData()
+                    console.log('get data aplied')
+                }
+            })
+
+
+
+
+        }
+        //delete
+
+        function deleteData(id) {
+          
+            fetch(`delet/data/${id}`, {
+                method: 'DELETE'
+            })
+            getData()
+        }
+        //search
+
+        function search(value) {
+            let std = '';
+            
+            for (let i = 0; i < dataSave[0].length; i++) {
+                if (dataSave[0][i].name.includes(value)) {
+                    std += `  <div class="clumn">
+                <div class="id" >${i + 1}</div>
+                <div id="name_output">${dataSave[0][i].name}</div>
+                <div class="CIN_output">${dataSave[0][i].CIN}</div>
+                <div class="INFO_output">${dataSave[0][i].INFO}</div>
+                <div class="joinDate_output">${dataSave[0][i].joinDate}</div>
+                <div class="endDate_output">${dataSave[0][i].endDate}</div>
+                 <div class="update_output"><img src="icons8-write-24.png" alt="Update" onclick="update(${i})"></div>
+                <div class="delet_output"><img src="icons8-trash-24.png" alt="Delete" onclick="deleteData('${dataSave[0][i]._id}')"></div>
+            </div>
+            `
+                }
+                
+                document.getElementById('output').innerHTML = std;
+
+            }
+        }
+
+
+
+    </script>
+
+</html>
