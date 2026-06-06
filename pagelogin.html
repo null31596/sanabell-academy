@@ -514,15 +514,20 @@
            dateEnd:'1/03/2026' 
         },*/
         document.getElementById('searsh').addEventListener('click', () => {
-            // جلب القيم من المدخلات
-            let inputName = document.getElementById('username').value;
-            let inputCIN = document.getElementById('CIN').value;
+              let inputName = document.getElementById('username').value.toLowerCase().replaceAll(' ','') 
+            
+            let inputCIN = document.getElementById('CIN').value.toLowerCase().replaceAll(' ','') 
 
-            let found = false; // متغير للتأكد هل وجدنا المستخدم أم لا
+
+            let found = false;
 
             for (let i = 0; i < dataUser.length; i++) {
-                // المقارنة
-                if (dataUser[i].name === inputName && dataUser[i].CIN === inputCIN) {
+
+                let datauserName = dataUser[i].name.toLowerCase().replaceAll(' ','') 
+                let datauserCIN = dataUser[i].CIN.toLowerCase().replaceAll(' ','') 
+
+
+                if (datauserName=== inputName && datauserCIN  === inputCIN) {
                     console.log("تم العثور على: " + dataUser[i].name);
 
                     // إظهار مربع النتيجة
