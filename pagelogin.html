@@ -505,10 +505,10 @@
         },{
            name: 'OUSSAMA SIDKI',
            CIN: 'IA228903',
-           specialization:'TECHNIQUES DE CONSTRUCTION',
-           dure:'03 mois',
-           dateJoin:'05/09/2025',
-           dateEnd:'11/10/2025' 
+           specialization:'TECHNIQUES DE CONSTRUCTION | INFIRMIERE POLYVALENT',
+           dure:'03 mois | 04 mois',
+           dateJoin:'05/09/2025| 01/01/2026',
+           dateEnd:'11/10/2025| 01/04/2026' 
         },{
            name: 'ABDELFATTAH EL WADILI',
            CIN: 'EE743757',
@@ -782,7 +782,15 @@
            dure:'24 mois',
            dateJoin:'01/03/2024',
            dateEnd:'01/03/2026' 
+        },{
+           name: 'BOURAZZA ABDERRAHMAN',
+           CIN: 'F516961',
+           specialization:'MENUISERIE ALUMINIUM',
+           dure:'04 mois',
+           dateJoin:'01/03/2026',
+           dateEnd:'01/04/2026' 
         }
+          
              
         
     ];
@@ -831,8 +839,7 @@
                     document.querySelector('.deails').style.display = 'none';
                     document.getElementById('err').style.display = 'none';
                     document.querySelector('.container').style.display = 'none';
-                    break; // نوقف الحلقة لأننا وجدنا المستخدم
-                }
+                    break;                }
             }
 
             if (!found) {
@@ -842,7 +849,7 @@
         });
     </script>
     <script>
-        // الكلمات التي سيتم كتابتها وحذفها
+       
         const words = ["توثيق الخبرات.", "تكويناً معتمداً.", "تطوير للمهارات.", "دراسة تكوينية."];
 
         let wordIndex = 0; 
@@ -854,11 +861,11 @@
             const currentWord = words[wordIndex];
 
             if (isDeleting) {
-                // حذف حرف
+              
                 textElement.textContent = currentWord.substring(0, charIndex - 1);
                 charIndex--;
             } else {
-                // كتابة حرف
+
                 textElement.textContent = currentWord.substring(0, charIndex + 1);
                 charIndex++;
             }
