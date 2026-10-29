@@ -1,2129 +1,2707 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
- 
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sanabel Academy - Certification</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Sanabel Academy - Certification</title>
+   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 
-    <style>
-        :root {
-            /* تطبيق الألوان المطلوبة: الأبيض والأصفر (الذهبي) */
-            --primary-color: #ffffff; /* لون النصوص الأساسي */
-            --accent-color: #175089; /* اللون الأصفر/الذهبي للأكاديمية */
-            --bg-gradient: #ffffff; /* خلفية بيضاء */
-            --card-bg: rgba(255, 255, 255, 0.95);
-        }
+   <style>
+      :root {
+         /* تطبيق الألوان المطلوبة: الأبيض والأصفر (الذهبي) */
+         --primary-color: #ffffff;
+         /* لون النصوص الأساسي */
+         --accent-color: #175089;
+         /* اللون الأصفر/الذهبي للأكاديمية */
+         --bg-gradient: #ffffff;
+         /* خلفية بيضاء */
+         --card-bg: rgba(255, 255, 255, 0.95);
+      }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Cairo', sans-serif;
-            /* تم إزالة outline الأحمر */
-        }
+      * {
+         margin: 0;
+         padding: 0;
+         box-sizing: border-box;
+         font-family: 'Cairo', sans-serif;
+         /* تم إزالة outline الأحمر */
+      }
 
-        body {
-            background: var(--bg-gradient);
-            min-height: 100vh;
-            display: flex;
-            justify-content: start;
-            align-items: center;
-            overflow-x: hidden;
-        }
+      body {
+         background: var(--bg-gradient);
+         min-height: 100vh;
+         display: flex;
+         justify-content: start;
+         align-items: center;
+         overflow-x: hidden;
+      }
 
-        .container {
-            width: 100%;
-            max-width: 800px;
-            border-radius: 20px;
-            overflow: hidden;
-            animation: fadeIn 0.8s ease-in-out;
-            border: none;
-            display: flex;
-            flex-direction: column;
-        }
+      .container {
+         width: 100%;
+         max-width: 800px;
+         border-radius: 20px;
+         overflow: hidden;
+         animation: fadeIn 0.8s ease-in-out;
+         border: none;
+         display: flex;
+         flex-direction: column;
+      }
 
-        /* أنيميشن لظهور الصفحة */
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+      /* أنيميشن لظهور الصفحة */
+      @keyframes fadeIn {
+         from {
+            opacity: 0;
+            transform: translateY(20px);
+         }
 
-        img {
-            width: 500px;
-            height: auto;
-            margin: auto;
-            transition: transform 0.3s ease;
-        }
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
 
-        #inputs {
-            padding: 40px;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-        }
+      img {
+         width: 500px;
+         height: auto;
+         margin: auto;
+         transition: transform 0.3s ease;
+      }
 
-        #inputs input {
-            padding: 12px 20px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
-            width: 250px;
-        }
+      #inputs {
+         padding: 40px;
+         display: flex;
+         flex-wrap: wrap;
+         gap: 15px;
+         justify-content: center;
+      }
 
-        #inputs input:focus {
-            border-color: var(--accent-color);
-            outline: none;
-        }
+      #inputs input {
+         padding: 12px 20px;
+         border: 2px solid #ddd;
+         border-radius: 8px;
+         font-size: 16px;
+         transition: border-color 0.3s;
+         width: 250px;
+      }
 
-        #inputs button {
-            padding: 12px 30px;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+      #inputs input:focus {
+         border-color: var(--accent-color);
+         outline: none;
+      }
 
-        #inputs button:hover {
-            background: #1a1a1a;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 10px rgba(181, 148, 16, 0.3);
-        }
+      #inputs button {
+         padding: 12px 30px;
+         background: var(--accent-color);
+         color: white;
+         border: none;
+         border-radius: 8px;
+         font-weight: bold;
+         cursor: pointer;
+         transition: all 0.3s;
+      }
 
-        #result {
-            padding: 30px;
-            animation: slideUp 0.5s ease-out;
-            width: 100%;
-            display: none; /* إخفاء النتائج في البداية */
-            color: #1a1a1a;
-        }
+      #inputs button:hover {
+         background: #1a1a1a;
+         transform: translateY(-2px);
+         box-shadow: 0 5px 10px rgba(181, 148, 16, 0.3);
+      }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+      #result {
+         padding: 30px;
+         animation: slideUp 0.5s ease-out;
+         width: 100%;
+         display: none;
+         /* إخفاء النتائج في البداية */
+         color: #1a1a1a;
+      }
 
-        #info {
-            background: white;
-            padding: 25px;
-            border-radius: 12px;
-            outline: 1px solid #000;
-            border-right: 5px solid var(--accent-color);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            
-        }
+      @keyframes slideUp {
+         from {
+            opacity: 0;
+            transform: translateY(10px);
+         }
 
-        #info span {
-            display: flex;
-            justify-content: space-between;
-            padding: 10px 0;
-            border-bottom: 1px dashed #000000;
-            font-size: 18px;
-            color: #000000;
-        }
+         to {
+            opacity: 1;
+            transform: translateY(0);
+         }
+      }
 
-        #info p {
-            color: #000;
-            font-weight: bold;
-        }
+      #info {
+         background: white;
+         padding: 25px;
+         border-radius: 12px;
+         outline: 1px solid #000;
+         border-right: 5px solid var(--accent-color);
+         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 
-        #backImg {
-            height: 100vh;
-            width: 50%;
-            align-self: center;
-            border-left: 10px solid var(--accent-color);
-            object-fit: cover;
-        }
+      }
 
-        #wlcoming {
-            position: absolute;
-            top: 30px;
-            margin: 30px;
-            color: var(--primary-color);
-            text-shadow: 1px 1px 5px rgba(255,255,255,0.8);
-        }
+      #info span {
+         display: flex;
+         justify-content: space-between;
+         padding: 10px 0;
+         border-bottom: 1px dashed #000000;
+         font-size: 18px;
+         color: #000000;
+      }
 
-        #littl-info {
-            position: absolute;
-            top: 100px;
-            margin: 30px;
-            color: var(--primary-color);
-            max-width: 40%;
-        }
+      #info p {
+         color: #000;
+         font-weight: bold;
+      }
 
-        .typewriter-container {
-            position: absolute;
-            top: 300px;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 24px;
-            text-align: center;
-            margin-top: 50px;
-            color: var(--primary-color);
-            margin-right: 50px;
-        }
+      #backImg {
+         height: 100vh;
+         width: 50%;
+         align-self: center;
+         border-left: 10px solid var(--accent-color);
+         object-fit: cover;
+      }
 
-        #typewriter-text {
-            color: #ffea00;
-            font-weight: bold;
-        }
+      #wlcoming {
+         position: absolute;
+         top: 30px;
+         margin: 30px;
+         color: var(--primary-color);
+         text-shadow: 1px 1px 5px rgba(255, 255, 255, 0.8);
+      }
 
-        .cursor {
-            color: #ffea00;
-            font-weight: bold;
-            animation: blink 0.7s infinite;
-        }
+      #littl-info {
+         position: absolute;
+         top: 100px;
+         margin: 30px;
+         color: var(--primary-color);
+         max-width: 40%;
+      }
 
-        @keyframes blink {
-            0% { opacity: 1; }
-            50% { opacity: 0; }
-            100% { opacity: 1; }
-        }
+      .typewriter-container {
+         position: absolute;
+         top: 300px;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+         font-size: 24px;
+         text-align: center;
+         margin-top: 50px;
+         color: var(--primary-color);
+         margin-right: 50px;
+      }
 
-        #degree {
-            height: auto;
-            width: 100%;
-            max-width: 800px;
-            display: none;
-            color: #1a1a1a;
-        }
+      #typewriter-text {
+         color: #ffea00;
+         font-weight: bold;
+      }
 
-        #up_logo {
-            position: absolute;
-            top: 0;
-            align-self: center;
-            width: 300px;
-        }
+      .cursor {
+         color: #ffea00;
+         font-weight: bold;
+         animation: blink 0.7s infinite;
+      }
 
-        /* =========================================
+      @keyframes blink {
+         0% {
+            opacity: 1;
+         }
+
+         50% {
+            opacity: 0;
+         }
+
+         100% {
+            opacity: 1;
+         }
+      }
+
+      #degree {
+         height: auto;
+         width: 100%;
+         max-width: 800px;
+         display: none;
+         color: #1a1a1a;
+      }
+
+      #up_logo {
+         position: absolute;
+         top: 0;
+         align-self: center;
+         width: 300px;
+      }
+
+      /* =========================================
            إعدادات التجاوب (Media Queries) للشاشات الصغيرة
            ========================================= */
-        @media (max-width: 768px) {
-            body {
-                flex-direction: column;
-                justify-content: flex-start;
-            }
+      @media (max-width: 768px) {
+         body {
+            flex-direction: column;
+            justify-content: flex-start;
+         }
 
-            #backImg {
-                width: 100%;
-                height: 250px;
-                border-left: none;
-                border-bottom: 5px solid var(--accent-color);
-                order: -1; /* جعل الصورة في الأعلى بالهواتف */
-                display: none;
-            }
 
-            /* إلغاء التموضع المطلق (Absolute) في الهواتف لترتيب العناصر بشكل طبيعي */
-            #wlcoming, #littl-info, .typewriter-container {
-                position: relative;
-                top: auto;
-                margin: 15px auto;
-                max-width: 90%;
-                text-align: center;
-                display: none;
-            }
+         #backImg {
+            width: 100%;
+            height: 250px;
+            border-left: none;
+            border-bottom: 5px solid var(--accent-color);
+            order: -1;
+            /* جعل الصورة في الأعلى بالهواتف */
+            display: none;
+         }
 
-            #up_logo {
-                top:0;
-                display:none;
-            }
+         /* إلغاء التموضع المطلق (Absolute) في الهواتف لترتيب العناصر بشكل طبيعي */
+         #wlcoming,
+         #littl-info,
+         .typewriter-container {
+            position: absolute;
+            top: auto;
+            margin: 15px auto;
+            max-width: 90%;
+            text-align: center;
+            display: none;
+         }
 
-            .container {
-                margin-top: 100px;
-            }
+      
+         #up_logo {
+            top: 0;
+            display: flex;
+         }
 
-            #inputs {
-                flex-direction: column;
-                align-items: center;
-            }
+         .container {
+            margin-top: 100px;
+         }
 
-            #inputs input, #inputs button {
-                width: 100%;
-                max-width: 300px;
-            }
+         #inputs {
+            flex-direction: column;
+            align-items: center;
+         }
 
-            img {
-                width: 100%;
-                max-width: 300px;
-            }
+         #inputs input,
+         #inputs button {
+            width: 100%;
+            max-width: 300px;
+         }
 
-            #info span {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 5px;
-            }
-        }
-    </style>
+         img {
+            width: 100%;
+            max-width: 300px;
+         }
+
+         #info span {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 5px;
+         }
+      }
+   </style>
+   <style>
+      #into_back {
+         margin: 0;
+         height: 100vh;
+         width: 50%;
+         font-weight: 100;
+         background: radial-gradient(#0d5598, #10121f);
+         -webkit-overflow-Y: hidden;
+         -moz-overflow-Y: hidden;
+         -o-overflow-Y: hidden;
+         overflow-y: hidden;
+         -webkit-animation: fadeIn 1 1s ease-out;
+         -moz-animation: fadeIn 1 1s ease-out;
+         -o-animation: fadeIn 1 1s ease-out;
+         animation: fadeIn 1 1s ease-out;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         outline: 15px solid #8a750c;
+
+      }
+
+
+
+      .light {
+         position: absolute;
+         width: 0px;
+         opacity: .75;
+         background-color: rgb(203, 227, 24);
+         box-shadow: #e9f1f1 0px 0px 20px 2px;
+         opacity: 0;
+         top: 100vh;
+         bottom: 0px;
+         left: 0px;
+         right: 0px;
+         margin: auto;
+      }
+
+      .x1 {
+         -webkit-animation: floatUp 4s infinite linear;
+         -moz-animation: floatUp 4s infinite linear;
+         -o-animation: floatUp 4s infinite linear;
+         animation: floatUp 4s infinite linear;
+         -webkit-transform: scale(1.0);
+         -moz-transform: scale(1.0);
+         -o-transform: scale(1.0);
+         transform: scale(1.0);
+         left: 0%;
+      }
+
+      .x2 {
+         -webkit-animation: floatUp 7s infinite linear;
+         -moz-animation: floatUp 7s infinite linear;
+         -o-animation: floatUp 7s infinite linear;
+         animation: floatUp 7s infinite linear;
+         -webkit-transform: scale(1.6);
+         -moz-transform: scale(1.6);
+         -o-transform: scale(1.6);
+         transform: scale(1.6);
+         left: 10%;
+
+      }
+
+      .x3 {
+         -webkit-animation: floatUp 2.5s infinite linear;
+         -moz-animation: floatUp 2.5s infinite linear;
+         -o-animation: floatUp 2.5s infinite linear;
+         animation: floatUp 2.5s infinite linear;
+         -webkit-transform: scale(.5);
+         -moz-transform: scale(.5);
+         -o-transform: scale(.5);
+         transform: scale(.5);
+         left: 15%;
+      }
+
+      .x4 {
+         -webkit-animation: floatUp 4.5s infinite linear;
+         -moz-animation: floatUp 4.5s infinite linear;
+         -o-animation: floatUp 4.5s infinite linear;
+         animation: floatUp 4.5s infinite linear;
+         -webkit-transform: scale(1.2);
+         -moz-transform: scale(1.2);
+         -o-transform: scale(1.2);
+         transform: scale(1.2);
+         left: 34%;
+      }
+
+      .x5 {
+         -webkit-animation: floatUp 8s infinite linear;
+         -moz-animation: floatUp 8s infinite linear;
+         -o-animation: floatUp 8s infinite linear;
+         animation: floatUp 8s infinite linear;
+         -webkit-transform: scale(2.2);
+         -moz-transform: scale(2.2);
+         -o-transform: scale(2.2);
+         transform: scale(2.2);
+         left: 57%;
+      }
+
+      .x6 {
+         -webkit-animation: floatUp 3s infinite linear;
+         -moz-animation: floatUp 3s infinite linear;
+         -o-animation: floatUp 3s infinite linear;
+         animation: floatUp 3s infinite linear;
+         -webkit-transform: scale(.8);
+         -moz-transform: scale(.8);
+         -o-transform: scale(.8);
+         transform: scale(.8);
+         left: 0%;
+      }
+
+      .x7 {
+         -webkit-animation: floatUp 5.3s infinite linear;
+         -moz-animation: floatUp 5.3s infinite linear;
+         -o-animation: floatUp 5.3s infinite linear;
+         animation: floatUp 5.3s infinite linear;
+         -webkit-transform: scale(3.2);
+         -moz-transform: scale(3.2);
+         -o-transform: scale(3.2);
+         transform: scale(3.2);
+         left: 25%;
+      }
+
+      .x8 {
+         -webkit-animation: floatUp 4.7s infinite linear;
+         -moz-animation: floatUp 4.7s infinite linear;
+         -o-animation: floatUp 4.7s infinite linear;
+         animation: floatUp 4.7s infinite linear;
+         -webkit-transform: scale(1.7);
+         -moz-transform: scale(1.7);
+         -o-transform: scale(1.7);
+         transform: scale(1.7);
+         left: 63%;
+      }
+
+      .x9 {
+         -webkit-animation: floatUp 4.1s infinite linear;
+         -moz-animation: floatUp 4.1s infinite linear;
+         -o-animation: floatUp 4.1s infinite linear;
+         animation: floatUp 4.1s infinite linear;
+         -webkit-transform: scale(0.9);
+         -moz-transform: scale(0.9);
+         -o-transform: scale(0.9);
+         transform: scale(0.9);
+         left: 89%;
+      }
+
+      button:focus {
+         outline: none;
+      }
+
+      @-webkit-keyframes floatUp {
+         0% {
+            top: 100vh;
+            opacity: 0;
+         }
+
+         25% {
+            opacity: 1;
+         }
+
+         50% {
+            top: 0vh;
+            opacity: .8;
+         }
+
+         75% {
+            opacity: 1;
+         }
+
+         100% {
+            top: -100vh;
+            opacity: 0;
+         }
+      }
+
+      @-moz-keyframes floatUp {
+         0% {
+            top: 100vh;
+            opacity: 0;
+         }
+
+         25% {
+            opacity: 1;
+         }
+
+         50% {
+            top: 0vh;
+            opacity: .8;
+         }
+
+         75% {
+            opacity: 1;
+         }
+
+         100% {
+            top: -100vh;
+            opacity: 0;
+         }
+      }
+
+      @-o-keyframes floatUp {
+         0% {
+            top: 100vh;
+            opacity: 0;
+         }
+
+         25% {
+            opacity: 1;
+         }
+
+         50% {
+            top: 0vh;
+            opacity: .8;
+         }
+
+         75% {
+            opacity: 1;
+         }
+
+         100% {
+            top: -100vh;
+            opacity: 0;
+         }
+      }
+
+      @keyframes floatUp {
+         0% {
+            top: 100vh;
+            opacity: 0;
+         }
+
+         25% {
+            opacity: 1;
+         }
+
+         50% {
+            top: 0vh;
+            opacity: .8;
+         }
+
+         75% {
+            opacity: 1;
+         }
+
+         100% {
+            top: -100vh;
+            opacity: 0;
+         }
+      }
+
+      .header {
+
+         position: absolute;
+         left: 20%;
+         transform: translate(-50%, -50%);
+         font-family: 'Roboto', sans-serif;
+         font-weight: 200;
+         color: white;
+         font-size: 2em;
+      }
+
+      #head1,
+      #head2,
+      #head3,
+      #head4,
+      #head5 {
+         opacity: 0;
+      }
+
+      #head1 {
+         -webkit-animation: fadeOut 1 5s ease-in;
+         -moz-animation: fadeOut 1 5s ease-in;
+         -o-animation: fadeOut 1 5s ease-in;
+         animation: fadeOut 1 5s ease-in;
+      }
+
+      #head2 {
+         -webkit-animation: fadeOut 1 5s ease-in;
+         -moz-animation: fadeOut 1 5s ease-in;
+         -o-animation: fadeOut 1 5s ease-in;
+         animation: fadeOut 1 5s ease-in;
+         -webkit-animation-delay: 6s;
+         -moz-animation-delay: 6s;
+         -o-animation-delay: 6s;
+         animation-delay: -6s;
+      }
+
+      #head3 {
+         -webkit-animation: fadeOut 1 5s ease-in;
+         -moz-animation: fadeOut 1 5s ease-in;
+         -o-animation: fadeOut 1 5s ease-in;
+         animation: fadeOut 1 5s ease-in;
+         -webkit-animation-delay: 12s;
+         -moz-animation-delay: 12s;
+         -o-animation-delay: 12s;
+         animation-delay: -12s;
+      }
+
+      #head4 {
+         -webkit-animation: fadeOut 1 5s ease-in;
+         -moz-animation: fadeOut 1 5s ease-in;
+         -o-animation: fadeOut 1 5s ease-in;
+         animation: fadeOut 1 5s ease-in;
+         -webkit-animation-delay: 17s;
+         -moz-animation-delay: 17s;
+         -o-animation-delay: 17s;
+         animation-delay: -17s;
+      }
+
+      #head5 {
+         -webkit-animation: finalFade 1 5s ease-in;
+         -moz-animation: finalFade 1 5s ease-in;
+         -o-animation: finalFade 1 5s ease-in;
+         animation: finalFade 1 5s ease-in;
+         -webkit-animation-fill-mode: forwards;
+         -moz-animation-fill-mode: forwards;
+         -o-animation-fill-mode: forwards;
+         animation-fill-mode: forwards;
+         -webkit-animation-delay: 22s;
+         -moz-animation-delay: 22s;
+         -o-animation-delay: 22s;
+         animation-delay: -22s;
+      }
+
+      @-webkit-keyframes fadeIn {
+         from {
+            opacity: 0;
+         }
+
+         to {
+            opacity: 1;
+         }
+      }
+
+      @-moz-keyframes fadeIn {
+         from {
+            opacity: 0;
+         }
+
+         to {
+            opacity: 1;
+         }
+      }
+
+      @-o-keyframes fadeIn {
+         from {
+            opacity: 0;
+         }
+
+         to {
+            opacity: 1;
+         }
+      }
+
+      @keyframes fadeIn {
+         from {
+            opacity: 0;
+         }
+
+         to {
+            opacity: 1;
+         }
+      }
+
+      @-webkit-keyframes fadeOut {
+         0% {
+            opacity: 0;
+         }
+
+         30% {
+            opacity: 1;
+         }
+
+         80% {
+            opacity: .9;
+         }
+
+         100% {
+            opacity: 0;
+         }
+      }
+
+      @-moz-keyframes fadeOut {
+         0% {
+            opacity: 0;
+         }
+
+         30% {
+            opacity: 1;
+         }
+
+         80% {
+            opacity: .9;
+         }
+
+         100% {
+            opacity: 0;
+         }
+      }
+
+      @-o-keyframes fadeOut {
+         0% {
+            opacity: 0;
+         }
+
+         30% {
+            opacity: 1;
+         }
+
+         80% {
+            opacity: .9;
+         }
+
+         100% {
+            opacity: 0;
+         }
+      }
+
+      @keyframes fadeOut {
+         0% {
+            opacity: 0;
+         }
+
+         30% {
+            opacity: 1;
+         }
+
+         80% {
+            opacity: .9;
+         }
+
+         100% {
+            opacity: 0;
+         }
+      }
+
+      @-webkit-keyframes finalFade {
+         0% {
+            opacity: 0;
+         }
+
+         30% {
+            opacity: 1;
+         }
+
+         80% {
+            opacity: .9;
+         }
+
+         100% {
+            opacity: 1;
+         }
+      }
+
+      @-moz-keyframes finalFade {
+         0% {
+            opacity: 0;
+         }
+
+         30% {
+            opacity: 1;
+         }
+
+         80% {
+            opacity: .9;
+         }
+
+         100% {
+            opacity: 1;
+         }
+      }
+
+      @-o-keyframes finalFade {
+         0% {
+            opacity: 0;
+         }
+
+         30% {
+            opacity: 1;
+         }
+
+         80% {
+            opacity: .9;
+         }
+
+         100% {
+            opacity: 1;
+         }
+      }
+
+      @keyframes finalFade {
+         0% {
+            opacity: 0;
+         }
+
+         30% {
+            opacity: 1;
+         }
+
+         80% {
+            opacity: .9;
+         }
+
+         100% {
+            opacity: 1;
+         }
+      }
+
+      #footer {
+         font-family: 'Roboto', sans-serif;
+         font-size: 1.2em;
+         color: white;
+         position: fixed;
+         -webkit-transform: translate(95vw, 90vh);
+         -moz-transform: translate(95vw, 90vh);
+         transform: translate(95vw, 90vh);
+         transform: translate(95vw, 90vh);
+      }
+
+      @media (max-width: 768px) {
+         #into_back {
+            width: 100%;
+         }
+
+         .header {
+            left: 50%;
+         }
+
+         #boder {
+            width: 100%;
+         }
+            #into_back {
+            display: none;
+         }
+
+         #into_back  div{
+            display: none;
+         }
+
+      }
+   </style>
 </head>
 
 <body id="body">
-    <h1 id="wlcoming" class="deails">مرحبا بك في صفحة التحقق</h1>
-    <p id="littl-info" class="deails">تهدف منصة التحقق  إلى تعزيز الشفافية والمصداقية، من خلال تمكين المستفيدين من التحقق من صحة الوثائق الصادرة عن الأكاديمية ومطابقة المعلومات الواردة فيها مع البيانات المسجلة لديها.
-وتتيح هذه الخدمة التأكد من صحة الوثائق والتحقق من مصدرها، بما يسهم في الحد من التزوير والتلاعب بالمعلومات، ويعزز الثقة في الوثائق الأكاديمية.</p>
-    
-    <div class="typewriter-container">
-        <h1>نحن نقدم <span id="typewriter-text"></span><span class="cursor">|</span></h1>
-    </div>
-    
-    <img src="littleBack.jpeg" alt="" srcset="" id="backImg" class="deails">
-    
-    <div class="container">
-       
-        <img src="Screenshot 2026-04-05 7.23.30 PM-Photoroom.png" alt="Logo">
+   <h1 id="wlcoming" class="deails">مرحبا بك في صفحة التحقق</h1>
+   <p id="littl-info" class="deails">تهدف منصة التحقق إلى تعزيز الشفافية والمصداقية، من خلال تمكين المستفيدين من التحقق
+      من صحة الوثائق الصادرة عن الأكاديمية ومطابقة المعلومات الواردة فيها مع البيانات المسجلة لديها.
+      وتتيح هذه الخدمة التأكد من صحة الوثائق والتحقق من مصدرها، بما يسهم في الحد من التزوير والتلاعب بالمعلومات، ويعزز
+      الثقة في الوثائق الأكاديمية.</p>
 
-        <div id="inputs">
-            <input type="text" placeholder="اسم المستخدم" id="username">
-            <input type="text" placeholder="رقم البطاقة الوطنية (CIN)" id="CIN">
-            <button id="searsh">تحقق</button>
-        </div>
-        
-        <div id="err" style="align-self: center;color: red; display: none; margin-top: 10px; font-weight: bold;">
-            اسم المستخدم هذا أو رقم البطاقة الوطنية غير موجود
-        </div>
-    </div>
-    
-    <div id="degree">
-        <div id="result">
-            <div id="info">
-                <span>الاسم الكامل: <p id="name"></p></span>
-                <span>رقم البطاقة: <p id="CIN_info"></p></span>
-                <span>التخصص: <p id="specialization"></p></span>
-                <span>المدة: <p id="dure"></p></span>
-                <span>تاريخ الانضمام: <p id="join"></p></span>
-                <span>تاريخ التخرج: <p id="end"></p></span>
-            </div>
-        </div>
-    </div>
+   <div class="typewriter-container">
+      <h1>نحن نقدم <span id="typewriter-text"></span><span class="cursor">|</span></h1>
+   </div>
 
-    <script>
-         let dataUser = [
-        {
-           name: 'Ayoub Marnoufi',
-           CIN: 'HH105366',
-           specialization:'Responsable QHSE',
-           dure:'1',
-           dateJoin:'03/15/2025',
-           dateEnd:'15/03/2026' 
-        }, {
-           name: 'Fatima ezzahra Fax',
-           CIN: 'N440951',
-           specialization:'aide-soignante',
-           dure:'2 mois',
-           dateJoin:'01/10/2025',
-           dateEnd:'1/01/2026' 
-        }, {
-           name: 'Saleh Mikh Lbadaoui',
-           CIN: 'V322437',
-           specialization:'Coiffure-Hommes &  Femmes',
-           dure:'6 mois',
-           dateJoin:'01/9/2025',
-           dateEnd:'1/02/2026' 
-        },{
-           name: 'Jamila Atmani',
-           CIN: 'S511832',
-           specialization:'Techniques de peinture',
-           dure:'12 mois',
-           dateJoin:'01/3/2019',
-           dateEnd:'1/03/2020' 
-        },{
-           name: 'Laila Lebouihi',
-           CIN: 'HH189408',
-           specialization:'Assistont Socail',
-           dure:'12 mois',
-           dateJoin:'01/1/2025',
-           dateEnd:'1/01/2026' 
-        },{
-           name: 'Abderrahim Moussafia',
-           CIN: 'BB41500',
-           specialization:'La cuisine',
-           dure:'2 ans',
-           dateJoin:'01/1/2020',
-           dateEnd:'1/01/2022' 
-        },{
-           name: 'Ahmed El Bouhali',
-           CIN: 'G743846',
-           specialization:'Prothese Dentaire',
-           dure:'1 ans',
-           dateJoin:'01/3/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'ADIL ENNAOUI',
-           CIN: 'BH557575',
-           specialization:'Technique modernes de boucheri et de tronsformation de la viande',
-           dure:'1 ans',
-           dateJoin:'01/3/2018',
-           dateEnd:'1/03/2019' 
-        },{
-           name: 'Ahmed Darif',
-           CIN: 'X274822',
-           specialization:'Mecanique industriell - Techniques electoniques- Electricite du batiment',
-           dure:'6 mois',
-           dateJoin:'01/3/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'YASSINE ZEGUENDOUPH',
-           CIN: 'LA189738',
-           specialization:'Formation en Menuiserie Aluminium',
-           dure:'6 mois',
-           dateJoin:'01/9/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'JAMAL ELABOUDI',
-           CIN: 'IC46037',
-           specialization:'Formation Monteur du Structures Metalliques',
-           dure:'6 mois',
-           dateJoin:'02/10/2020',
-           dateEnd:'2/02/2021' 
-        },{
-           name: 'ELMEHDI AIROUT',
-           CIN: 'AD303240',
-           specialization:'Formation Travaux Divers du Batiment-Construction et Electricite',
-           dure:'6 mois',
-           dateJoin:'01/9/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'SOUFIANE GHARBAOUI',
-           CIN: 'WA180264',
-           specialization:'Rsponsable Qualite, Hygiene, Securite et envireonnement',
-           dure:'12 mois',
-           dateJoin:'01/1/2020',
-           dateEnd:'1/02/2021' 
-        },{
-           name: 'KHADIJA HOUJJAJ',
-           CIN: 'G392981',
-           specialization:'Education  de la Petite Enfance',
-           dure:'12 mois',
-           dateJoin:'01/3/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'Ahmed Darif',
-           CIN: 'X274822',
-           specialization:'Mecanique industriell - Techniques electoniques- Electricite du batiment',
-           dure:'6 mois',
-           dateJoin:'01/3/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'ISSAME EL JANATI',
-           CIN: 'DO52560',
-           specialization:'Instalation Sanitair et Plomberie',
-           dure:'6 mois',
-           dateJoin:'01/9/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'HASSAN EL MOSTAKIM',
-           CIN: 'BE726063',
-           specialization:'Chef Professionnel en Cuisine et Patisserie',
-           dure:'6 mois',
-           dateJoin:'01/9/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'AIT ESSI ABDELKABIR',
-           CIN: 'JC118886',
-           specialization:'PROFESSIONEL EN THERAPIE PAR VENTOUSE',
-           dure:'6 mois',
-           dateJoin:'01/9/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'KAMAL ED DOUYBY',
-           CIN: 'GJ30428',
-           specialization:'PROFESSIONEL EN CONDUIT DES NACELLES ELEVATRICES ET SECURITE AU TRAVAIL',
-           dure:'12 mois',
-           dateJoin:'01/3/2023',
-           dateEnd:'1/03/2024' 
-        },{
-           name: 'YASSER ESSARHINI',
-           CIN: 'BM61247',
-           specialization:'TECHNICIEN ELECTROMECANIQUE',
-           dure:'12 mois',
-           dateJoin:'01/3/2024',
-           dateEnd:'1/03/2025' 
-        },{
-           name: 'MOHAMED TINANI',
-           CIN: 'J415902',
-           specialization:'PROFESSIONNELLE DE ASSISTANT TECHNIQUE EN TRAVAUX ET MAINTENANCE',
-           dure:'04 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'1/03/2026' 
-        },{
-           name: 'HOUDA AIROUT',
-           CIN: 'AD322213',
-           specialization:'COIFFURE-FEMMES | ESTHETIQUE',
-           dure:'06 mois  | 06 mois',
-           dateJoin:'01/09/2021 |01/09/2018',
-           dateEnd:'3/03/2022|01/03/2019' 
-        },{
-           name: 'MOHAMED SULIMAN ABBKER ADAM',
-           CIN: 'P10187625',
-           specialization:'ASSISTANT MEDICAL COMMUNAUTAIRE',
-           dure:'12 mois',
-           dateJoin:'01/06/2025',
-           dateEnd:'1/06/2026' 
-        },{
-           name: 'MOHAMMED AMINE BOUATERIA',
-           CIN: 'ZT309659',
-           specialization:' TECHNIQUES HOTRLIERES',
-           dure:'06 mois',
-           dateJoin:'01/08/2024',
-           dateEnd:'1/02/2025' 
-        },{
-           name: 'AHMED MOTEA',
-           CIN: 'ZT302484',
-           specialization:'TECHNIQUES DE CONSTRUCTION',
-           dure:'06 mois',
-           dateJoin:'03/02/2022',
-           dateEnd:'3/08/2022' 
-        },{
-           name: 'ANAS BENHADAR',
-           CIN: 'BW49563',
-           specialization:'LA CUISINE',
-           dure:'12 mois',
-           dateJoin:'02/09/2019',
-           dateEnd:'02/09/2020' 
-        },{
-           name: 'BOULIF GHIZLANE',
-           CIN: 'BL53410',
-           specialization:'INFIRMIERE',
-           dure:'12 mois',
-           dateJoin:'01/05/2018',
-           dateEnd:'01/05/2019' 
-        },{
-           name: 'OUSSAMA SIDKI',
-           CIN: 'IA228903',
-           specialization:'TECHNIQUES DE CONSTRUCTION | INFIRMIERE POLYVALENT',
-           dure:'03 mois | 04 mois',
-           dateJoin:'05/09/2025| 01/01/2026',
-           dateEnd:'11/10/2025| 01/04/2026' 
-        },{
-           name: 'ABDELFATTAH EL WADILI',
-           CIN: 'EE743757',
-           specialization:'BOUCHERIE',
-           dure:'24 mois',
-           dateJoin:'01/05/2016',
-           dateEnd:'01/05/2018' 
-        },{
-           name: 'MOHAMMED EZ-ZANNOUNY',
-           CIN: 'PA113296',
-           specialization:'TECHNIQUES DE CONSTRUCTION',
-           dure:'04 mois',
-           dateJoin:'01/01/2025',
-           dateEnd:'01/04/2025' 
-        },{
-           name: 'FATIHA CHAFIQ',
-           CIN: 'JM25698',
-           specialization:'PROFESSIONNELLE EN RESPONSABLE QUALITE',
-           dure:'24 mois',
-           dateJoin:'01/05/2021',
-           dateEnd:'01/05/2023' 
-        },{
-           name: 'TAYEB ZDAG',
-           CIN: 'DO45763',
-           specialization:'PROFESSIONNELLE EN PATISSERIE',
-           dure:'04 mois',
-           dateJoin:'01/11/2021',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'ALAA EL MOUDDEN',
-           CIN: 'AE230666',
-           specialization:'PROFESSIONNELLE EN GASTRONOMIE',
-           dure:'24 mois',
-           dateJoin:'01/09/2020',
-           dateEnd:'01/09/2022' 
-        },{
-           name: 'HAMZA OUMELLOUCHE',
-           CIN: 'IA232686',
-           specialization:' INFIRMIERE POLYVALENT',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/05/2026' 
-        },{
-           name: 'MANAL EL FRIMI',
-           CIN: 'CD945443',
-           specialization:'PROFESSIONNELLE EN GASTRONOMIE',
-           dure:'12 mois',
-           dateJoin:'01/12/2023',
-           dateEnd:'01/12/2024' 
-        },{
-           name: 'MOHAMED ETTAJANI',
-           CIN: 'EE847074',
-           specialization:'PROFESSIONNELLE EN BOUCHER POLYVALENT',
-           dure:'12 mois',
-           dateJoin:'01/05/2022',
-           dateEnd:'01/05/2023' 
-        },{
-           name: 'AYOUB EL OUAJIDI',
-           CIN: 'M417555',
-           specialization:'COIFFURE-MASCULINE',
-           dure:'09 mois',
-           dateJoin:'01/06/2017',
-           dateEnd:'27/02/2018' 
-        },{
-           name: 'FARID SALAH',
-           CIN: 'BE97757',
-           specialization:'CONDUITE PROFESSIONNELLE',
-           dure:'04 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'AIT LAHCEN ABDERRAHIM',
-           CIN: 'BB69356',
-           specialization:'ELECTROMECANIQUE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'HAMDIA OMAR',
-           CIN: 'GN105421',
-           specialization:'MENUISERIE BOIS ET MACHINES A BOIS',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'MOHAMMED El MARBOUH',
-           CIN: 'SH188281',
-           specialization:'COIFFURE ET ESTHETIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'OUSSAMA ES-SALEMY',
-           CIN: 'Y527251',
-           specialization:'AMENAGEMENT ET DECORATION EN PLATRE',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'ABDERRAHAMANE EL HABBI',
-           CIN: 'C302898',
-           specialization:'PROTHESE DENTAIRE',
-           dure:'24mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'HAJAR BOUZAROITA',
-           CIN: 'Z738758',
-           specialization:'AIDE-SOIGNANTE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'AHMED EL MALLAGUI',
-           CIN: 'C719573',
-           specialization:'INFORMATIQUE DES SYSTEMES DE INFORMATION',
-           dure:'12 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'YOUNESS AKHDIM',
-           CIN: 'WA323547',
-           specialization:'INFORMATIQUE DES ORGANISATION | INFORMATIQUE DES SYSTEMES DE INFORMATION',
-           dure:'12mois',
-           dateJoin:'01/01/2024|01/03/2025',
-           dateEnd:'01/01/2025|01/03/2026' 
-        },{
-           name: 'MOHAMED BALAMINE',
-           CIN: 'VA153930',
-           specialization:'MECANIQUE AUTOMOBILE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'ANOUAR ALLIOUI',
-           CIN: 'AD345357',
-           specialization:' ELECTRONIQUE ET MECANIQUE AUTOMOBILE EMBARQUEE',
-           dure:'12 mois',
-           dateJoin:'01/01/2025',
-           dateEnd:'01/01/2026' 
-        },{
-           name: 'YASSINE AZELGANE',
-           CIN: 'AS7987',
-           specialization:'MAINTENANCE INDUSTRIELLE',
-           dure:'12 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'AOTHMAN EL BOUDI',
-           CIN: 'EE938646',
-           specialization:'LA CUISINE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'RACHID  OUALI',
-           CIN: 'X286980',
-           specialization:'MENUISERIE ALUMINIUM',
-           dure:'12 mois',
-           dateJoin:'01/03/2023',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'MINA FATNACI',
-           CIN: 'C402457',
-           specialization:' LA PATRISSERIE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'ILYAS AIT OUMGHAR',
-           CIN: 'SH230028',
-           specialization:'LA PEINTURE ET DECORATION',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'OUCHTAK',
-           CIN: 'JC646985',
-           specialization:' LA PEINTURE ET DECORATION',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'KAOUTAR NAMAN',
-           CIN: 'S688271',
-           specialization:' LA CUISINE',
-           dure:'12 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'MUSTAPHA HMIDAT',
-           CIN: 'EE755741',
-           specialization:' SERRURERIE ET METALLERIE',
-           dure:'12 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'SANAE ECHCHAFRI',
-           CIN: 'GB279807',
-           specialization:' DE INFIRMIER',
-           dure:'04 mois',
-           dateJoin:'01/01/2025',
-           dateEnd:'01/04/2025' 
-        },{
-           name: 'HIND EL ANSSARI',
-           CIN: 'PB131238',
-           specialization:'AIDE-SOIGNANTE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'HICHAM BOUROUZ',
-           CIN: 'F764324',
-           specialization:' SPORTS MANAGEMENT ET CREAITION DE EVENEMENTS SPORTS',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'AMINE HAMMAN ELKASRI',
-           CIN: 'L626431',
-           specialization:' ELECTRICITE DU BATIMENT',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'ZOUHAIR EL ALLAM',
-           CIN: 'E651596',
-           specialization:'ANIMATION ARTISTIQUE ET EDUCATIVE EN MILIEU SCOLAIRE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'NAZHA EL ALLAM',
-           CIN: 'EE80372',
-           specialization:'EDUCATRICE DE LE ENSEIGNEMENT PRESCOLAIRE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'KAOUTAR NAMAN',
-           CIN: 'S688271',
-           specialization:'LA COUSINE',
-           dure:'12 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'BOULEFRA ABDELLATIF',
-           CIN: 'JB288638',
-           specialization:'TECHNICIEN SPECIALISE ELECTRICITER DU BATIMENT',
-           dure:'12 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'ABDELALI CHUJAE',
-           CIN: 'C428018',
-           specialization:'ELECTRICITER GENERALE',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'BRAHIM DADDAH',
-           CIN: 'SH219892',
-           specialization:'ANIMATEUR EN QUALITE, HYGIENE, SECURITE ET ENVIRONNEMENT',
-           dure:'12 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'AZOUAOU MOHAMED',
-           CIN: 'UA28157',
-           specialization:'TECHNICIEN SUPERIEUR EN ELECTRICITER INDUSTRIELLE ET SYSTEMES ELECTROTECHNIQUES',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'BOURAZZA ABDERRAHMANE',
-           CIN: 'F516961',
-           specialization:'MENUISERIE ALUMINIUM',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'YOUNSE ZIANE',
-           CIN: 'D567680',
-           specialization:'MECANIQUE AUTOMOBILE',
-           dure:'12 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'SAMI GHARBOUCHE',
-           CIN: 'HH261608',
-           specialization:'INFIRMIERE POLYVALENT',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'HIBA KAHLI',
-           CIN: 'HH262797',
-           specialization:'INFIRMIERE POLYVALENT',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'OUCHTAK KHALID',
-           CIN: 'JC646985',
-           specialization:'PEINTURE ET DECORATION',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'REDOUANE SEBBOUTI',
-           CIN: 'G375592',
-           specialization:'SOUDAGE ET CONSTRUCTION METALLIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'MOHAMED SOUFIANE BENTITA',
-           CIN: 'AS15227',
-           specialization:'ANIMATEUR EN QUALITE, HYGIENE, SECURITE ET ENVIRONNEMENT',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'MOUHCINE RAJRAJ',
-           CIN: 'EE365101',
-           specialization:'PROTHESE DENTAIR',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'SALAHEDDINE DIBE',
-           CIN: 'GM162267',
-           specialization:'COMMERCE ET GESTION COMMERCIALE',
-           dure:'24 mois',
-           dateJoin:'01/03/2021',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'SOUAF  ABDELILAH',
-           CIN: 'BJ349986',
-           specialization:'SUPERVISEUR EN HYGIENE - SECURITE ET ENVIREONNENT',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'MANAL EL KHOUDIRI',
-           CIN: 'BJ498310',
-           specialization:'COMMERCE ET GESTION COMMERCIALE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'MBAREK ID-MHAND ',
-           CIN: 'N491931',
-           specialization:'COUTURE ET BRODERIE',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'MOHAMED GHAFIL',
-           CIN: 'AB161161',
-           specialization:' ELECTROMECANIQUE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'MOHAMED BALHAD',
-           CIN: 'J535419',
-           specialization:' LA CUISINE',
-           dure:'06 mois',
-           dateJoin:'01/09/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'ACHRAF NOKRI',
-           CIN: 'BH373321',
-           specialization:'LOGISTIQUE ET CONDUITE DES CHARIOTS ELEVATEURS',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'AYOUB ELHAMDANI',
-           CIN: 'HH314224',
-           specialization:'MECANIQUE AUTOMOBILE',
-           dure:'04 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'YOUNES EL MAHIR',
-           CIN: 'N213475',
-           specialization:'AGRICULTURE ET ELEVAGE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'REDOUANE KHARDIOUI',
-           CIN: 'UD20881',
-          specialization:'ECHNIQUES DE CONSTRUCTION',
-           dure:'12 mois',
-           dateJoin:'01/07/2025',
-           dateEnd:'01/07/2026' 
-        },{
-           name: 'BENYAZZA LAHCEN',
-           CIN: 'H695449',
-           specialization:'RESPONSABLE POLYVALENT EN MAINTENANCE INDUSTRIELLE ET HSE - MANAGEMENT DE LA QUALITE',
-           dure:'24 MOIS - 12 MOIS',
-           dateJoin:'01/03/2020 - 01/03/2025',
-           dateEnd:'01/03/2022 - 01/03/2026' 
-        },{
-           name: 'HAMZA EL ARFAOUI',
-           CIN: 'CD636088',
-           specialization:'ECHNIQUES DE CONSTRUCTION',
-           dure:'24 mois',
-           dateJoin:'01/03/2017',
-           dateEnd:'01/03/2019' 
-        },{
-           name: 'MBAREK AJOUKI',
-           CIN: 'G528264',
-           specialization:'PEINTURR DE DECORATION ',
-           dure:'04 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'MOHAMED BOUIALLOUCHEN',
-           CIN: 'V264879',
-           specialization:'FROID ET CLIMATISATION ',
-           dure:'04 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'MOHAMED ELBAKKALI',
-           CIN: 'BE793029',
-           specialization:'COMMERCE ET GESTION COMMERCIALE ',
-           dure:'12 mois',
-           dateJoin:'01/3/2020',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'ZAKARIA AITBOUDAKIK',
-           CIN: 'PB325156',
-           specialization:'PLOMBERIE ET INSTALLATIONS SANITAIRES ',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-          },{
-           name: 'ILYAS FARIDI',
-           CIN: 'UD19996',
-           specialization:'RESPONSABLE HOTELIER ',
-           dure:'24 mois',
-           dateJoin:'02/01/2024',
-           dateEnd:'01/01/2026' 
-        },{
-           name: 'ABDELKARIM ED DIMNATI',
-           CIN: 'Y441231',
-           specialization:'ELECTRICITE INDUSTRIELLE ',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'AZIZ SMAANAT',
-           CIN: 'XA100561',
-           specialization:'LA COIFFURE ET ESTHETIQUE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'WALID SALHI',
-           CIN: 'FA170905',
-           specialization:'ELECTRICITE AUTOMOBILE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'KHALID ELHAJJAJI',
-           CIN: 'AD125741',
-           specialization:'ELECTRICITE INDUSTRIELLE',
-           dure:'24 mois',
-           dateJoin:'01/06/2018',
-           dateEnd:'01/06/2020' 
-        },{
-           name: 'HAFSA BOUAICHI',
-           CIN: 'UC146970',
-           specialization:'LA PATISSERIE-COUTURE ET BRODERIE',
-           dure:'12 mois-12 mois',
-           dateJoin:'01/03/2024-01/04/2025',
-           dateEnd:'01/03/2025-01/04/2026'
-        },{
-           name: 'EL AIDY KOUJJEI',
-           CIN: 'S361511',
-           specialization:'REVETEMENT EN MARBRE- PIERRE ET CARRELAGE',
-           dure:'24',
-           dateJoin:'01/03/2021',
-           dateEnd:'01/03/2023'
-        },{
-           name: 'NOURDDINE AMAZZANE',
-           CIN: 'SK2364',
-           specialization:'TRANSPORT ET LOGISTIQUE',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022'
-        },{
-           name: 'MOUNIR LAARAJ',
-           CIN: 'CD604505',
-           specialization:'COMMERCE ET GESTION COMMERCIAL',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026'
-        },{
-           name: 'MORAD EL KELMA',
-           CIN: 'JC420031',
-           specialization:'AGENT ADMINISTRATIF',
-           dure:'12 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2021'
-        },{
-           name: 'ABDELHAK ELALAMI',
-           CIN: 'WA165724',
-           specialization:'CHEF DE CHANTIER EN CONSTRUCTION',
-           dure:'04 mois',
-           dateJoin:'01/01/2020',
-           dateEnd:'01/04/2020'
-        },{
-           name: 'RACHID ELHANANY',
-           CIN: 'I502114',
-           specialization:' JARDINAGE ET AMENGEMENT PAYSAGER',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026'
-        },{
-           name: 'AYOUB EL GOURYANI',
-           CIN: 'HA218487',
-           specialization:' SOUDAGE ET CONSTRUCTION METALLIQUE',
-           dure:'24 mois',
-           dateJoin:'01/03/2018',
-           dateEnd:'01/03/2020'
-        },{
-           name: 'MOHAMMED EL HADDADI',
-           CIN: 'R300967',
-           specialization:'THERAPIE PAR VENTEUS',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026'
-        },{
-           name: 'AZIZ NEQZAOUI',
-           CIN: 'IB142578',
-           specialization:'REVETEMENT EN MARBRE-PIERRE ET CARRELAGE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026'
-        },{
-           name: 'ABDELHAK ELALAMI',
-           CIN: 'WA165724',
-           specialization:'CHEF DE CHANTIER EN CONSTRUCTION',
-           dure:'04 mois',
-           dateJoin:'01/01/2020',
-           dateEnd:'01/04/2020'
-        },{
-           name: 'NABIL ELKHIATI',
-           CIN: 'H469172',
-           specialization:'AGENT DE SECURITE ET DE GARDIENNAGE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026'
-        },{
-           name: ' HAMID TAGHZOUT',
-           CIN: 'CB270491',
-           specialization:'OUVRIER QUALIFIE-OPERATEUR DE STATION DE CONCASSAGE ET DE CRIBLAGE',
-           dure:'12 mois',
-           dateJoin:'01/09/2025',
-           dateEnd:'28/08/2026'
-        },{
-           name: 'ISMAIL WANAIM',
-           CIN: 'JC584574',
-           specialization:'PLOMBERIE ET INSTALLATIONS SANITAIRES',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026'
-        },{
-           name: 'HASSAN HAMOUCHI',
-           CIN: 'BK356675',
-           specialization:'LA CUISINE',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024'
-        },{
-           name: 'ADAM SNINA',
-           CIN: 'DM9328',
-           specialization:' DIAGNOSTIC ET MAINTENANCE AUTOMOBILE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026'
-        },{
-           name: 'YOUSSEF CHARAFI',
-           CIN: 'JA192138',
-           specialization:' LA PATISSERIE',
-           dure:'12 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2021'
-        },{
-           name: 'HAMMIOUI ABDELKBIR',
-           CIN: 'IB231778',
-           specialization:'FABRICATION MECANIQUE GENERALE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026'
-        },{
-           name: 'HAMID TAOURA',
-           CIN: 'P265667',
-           specialization:'MENUISERIE EN BOIS ET DECORATION',
-           dure:'24 mois',
-           dateJoin:'01/03/2016',
-           dateEnd:'01/03/2018'
-        },{
-           name: 'ABDELLATIF JOUIRRA',
-           CIN: 'AD365047',
-           specialization:'COIFFURE ET LESTHETIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'MOHAMED EL ATI',
-           CIN: 'LB271120',
-           specialization:'SCIENCES DE LA TERRE ET GEOLOGIE APPLIQUEE',
-           dure:'12 mois',
-           dateJoin:'01/09/2024',
-           dateEnd:'01/09/2025' 
-        },{
-           name: 'BILAL SALMUN',
-           CIN: 'KB90410',
-           specialization:'TRANSFORMATION ET PRPARATION DES PRODUITS DE LA PECHE',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'ABDESSAMAD LOUKIRI',
-           CIN: 'JH67155',
-           specialization:'ELECTRICIEN INSTALLATEUR DE CHAMERS DE SURVEILLANCE',
-           dure:'12 mois',
-           dateJoin:'01/03/2021',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'SAID LASRI',
-           CIN: 'BE3636176',
-           specialization:'FABRICATION DE CHAUSSURES',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'FRIMANE THAMI',
-           CIN: 'BJ390131',
-           specialization:'CHAUDRONNIER',
-           dure:'24 mois',
-           dateJoin:'01/03/2019',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'EL AMIN TAIDI EL OUAHABI',
-           CIN: 'KB46521',
-           specialization:'ELECTRICITE INDUSTRIELLE',
-           dure:'12 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'JAMAI JAIL',
-           CIN: 'T208538',
-           specialization:'MENUISERIE ALUMINIUM',
-           dure:'12 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'AZIZ RILA',
-           CIN: 'Y200889',
-           specialization:' SOUDAGE ET CONSTRUCTION METALLIQUE',
-           dure:'24 mois',
-           dateJoin:'01/03/2018',
-           dateEnd:'01/03/2020'
-        },{
-           name: 'ZOHAIR ELBORDIJI',
-           CIN: 'SH193146',
-           specialization:'ELECTRICITE INDUSTRIELLE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'AZIZ SABER',
-           CIN: 'CD173716',
-           specialization:'AMENAGEMENT ET DECORATION EN PLATRE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'ABDELMALEK ET-TAHIRY',
-           CIN: 'CD399869',
-           specialization:'AGRICULTURE ET PRODUCTION AGRICOLE',
-           dure:'12 mois',
-           dateJoin:'01/03/2019',
-           dateEnd:'01/03/2020' 
-        },{
-           name: 'MOHAMMED MAGHRAOUI',
-           CIN: 'C438234',
-           specialization:'CARRELAGE ET REVETEMENTS DE SOLS ET MURS',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'TAOUFIK SAFHI',
-           CIN: 'CD291337',
-           specialization:'MENUISERIE EN BOIS ET DECORATION',
-           dure:'24 mois',
-           dateJoin:'01/03/2019',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'ADIL HSSAINI',
-           CIN: 'IA224771',
-           specialization:' LA CUISINE',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'MOHAMMAD EL IDRISSI',
-           CIN: 'KB9161',
-           specialization:'ELECTRICITE INDUSTRIELLE',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'MOHAMED BELHAOUIDEG',
-           CIN: 'E764651',
-           specialization:'LA COUTURE ET BRODERIE',
-           dure:'12 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2021' 
-        },{
-           name: 'MOUAAD BELAAYD',
-           CIN: 'YT9969',
-           specialization:'AGRICULTURE ET PRODUCTION AGRICOLE',
-           dure:'24 mois',
-           dateJoin:'10/01/2024',
-           dateEnd:'10/01/2026' 
-        },{
-           name: 'DRISS EL YAMAMI',
-           CIN: 'JC649001',
-           specialization:'PEINTURE ET DECORATION',
-           dure:'24 mois',
-           dateJoin:'01/03/2021',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'RACHIDA ESSEMKAOUI',
-           CIN: 'M695931',
-           specialization:'TECHNIQUES HOTELIERES',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'SALMAN BEN ZIANE',
-           CIN: 'KB204749',
-           specialization:'PEINTURE ET DECORATION',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'FATIMA ZAHRAA MAHBOUBI',
-           CIN: 'BM28538',
-           specialization:'COIFFURE ET LESTHETIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'YASSINE HMICH',
-           CIN: 'MD24679',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'MERIEM DARIF',
-           CIN: 'M557674',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'HANANE AFIFI',
-           CIN: 'MC312798',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'AICHA SAMID',
-           CIN: 'M660964',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'KHADIJA EL ABDI',
-           CIN: 'M651288',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'MOHAMMED BOUADEL',
-           CIN: 'M659134',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'ZAHRA MGAIZ',
-           CIN: 'M427341',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'HIBA TAQSI',
-           CIN: 'M713451',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/12/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'SAMIRA EDDAHBI',
-           CIN: 'MC340712',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'SARA ATAR',
-           CIN: 'M691115',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'KHADIJA EL FADILI',
-           CIN: 'M659567',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'ZINEB ELGABOURI',
-           CIN: 'HH350945',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'NAJOUA EL FADILI',
-           CIN: 'D584184',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'RADIA KHACHANE',
-           CIN: 'MC329840',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'NAJIA DARROUJI',
-           CIN: 'M650411',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'AMINA CHAKROUNE',
-           CIN: 'M674247',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'HASSNA BAHAR',
-           CIN: 'MC328278',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'AYOUB EN-NAJAR',
-           CIN: 'MD38302',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'ABDELAAZIZ EL MAHJOUR',
-           CIN: 'MD36959',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'NABILA ERRABIA',
-           CIN: 'M573292',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'HASNAE BELKADA',
-           CIN: 'M653569',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'SIHAM ABDELMJID',
-           CIN: 'MC335544',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'ASSMAA ELATTAOUY',
-           CIN: 'MC334735',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/06/2026',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'KENZA BEGGAR',
-           CIN: 'MD37947',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'HIND RHALID',
-           CIN: 'M707204',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/12/2025',
-           dateEnd:'01/09/2026' 
-        },{
-           name: 'RACHID BOUJANNAH',
-           CIN: 'GN164517',
-           specialization:' SOUDAGE ET CONSTRUCTION METALLIQUE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026'
-        },{
-           name: 'MAROUAN RAMOU',
-           CIN: 'LB259476',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'24 mois',
-           dateJoin:'01/03/2023',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'NAJIB OUAHABI',
-           CIN: 'K463630',
-           specialization:'FABRICATION MÉCANIQUE GÉNÉRALE',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'ABDELGHNI LACHGUAR',
-           CIN: 'E505393',
-           specialization:'CARRELAGE ET REVETEMENTS DE SOLS ET MURS',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'ABDERRAHIM BENTALHA',
-           CIN: 'LB248344',
-           specialization:'ARTS PLASTIQUES ET ARTS MUSICAUX',
-           dure:'12 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'MIMOUN AGOUjil',
-           CIN: 'ZG145103',
-           specialization:'MENUISERIE ALUMINIUM',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'ABDELGHNI LACHGUAR',
-           CIN: 'E505393',
-           specialization:'CARRELAGE ET REVETEMENTS DE SOLS ET MURS',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'HICHAM KHAYATI',
-           CIN: 'LB265961',
-           specialization:'GESTION DES ENTREPRISES',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'YASSINE EL ARFAOUY',
-           CIN: 'ZT200053',
-           specialization:'LA COUTURE ET BRODERIE',
-           dure:'04 mois',
-           dateJoin:'01/01/2022',
-           dateEnd:'01/04/2022' 
-        },{
-           name: 'BRAHIM OUBAKSSAINE',
-           CIN: 'PA223991',
-           specialization:'PLOMBERIE ET INSTALLATIONS SANITAIRES',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026'
-        },{
-           name: 'MERSAL ABDELILAH',
-           CIN: 'H153436',
-           specialization:'LA MECANIQUE DES ENGINS MARITIMES',
-           dure:'12 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'MOUNCEF NEJJARI',
-           CIN: 'WA309604',
-           specialization:'INFORMATIQUE DU GESTION',
-           dure:'12 mois',
-           dateJoin:'01/07/2021',
-           dateEnd:'01/07/2022' 
-        },{
-           name: 'MOHAMED EL AMMARI',
-           CIN: 'CB154486',
-           specialization:'OPÉRATEUR D’EMBALLAGE ET DE MISE',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'OMAR BOUCHAROUR',
-           CIN: 'F739436',
-           specialization:'SOUDAGE ET CONSTRUCTION METALLIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'HAKIMA MAROUANE',
-           CIN: 'CD522965',
-           specialization:'ASSISTANT SOCIAL',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'YOUSSEF BOUMSISS',
-           CIN: 'V257826',
-           specialization:'MENUISERIE EN BOIS ET DÉCORATION',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'ACHRAF NOURI',
-           CIN: 'WA362822',
-           specialization:'ÉDUCATION PHYSIQUE ET SPORTIVE',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'OUMAYMA EL MARID',
-           CIN: 'LA183499',
-           specialization:'ÉLECTRICITÉ INDUSTRIELLE',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'FATIHA ALLAM',
-           CIN: 'C607829',
-           specialization:'LA CUISINE',
-           dure:'12 mois',
-           dateJoin:'01/03/2021',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'SOUFIANE TOUBAT',
-           CIN: 'CD343213',
-           specialization:'LA COIFFURE ET L’ESTHÉTIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2023',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'FATIMA ZAHRAE DAYNANA',
-           CIN: 'CD993126',
-           specialization:'INFORMATIQUE DU GESTION',
-           dure:'12 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'HAFID HARROUR',
-           CIN: 'GA151039',
-           specialization:'AMÉNAGEMENT ET DÉCORATION EN PLÂTRE',
-           dure:'04 mois',
-           dateJoin:'01/01/2022',
-           dateEnd:'01/04/2022' 
-        },{
-           name: 'YOUSSEF EL OUALI',
-           CIN: 'Z329500',
-           specialization:'MAINTENANCE ET RÉPARATION DES APPAREILS ÉLECTROMÉNAGERS ET DE CLIMATISATION',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'MOHAMMED MOUSSAIR',
-           CIN: 'T212703',
-           specialization:'ÉLECTRICITÉ DU BÂTIMENT',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'ABDENNOUR EL HAYMER',
-           CIN: 'LB267292',
-           specialization:'SOUDAGE ET CONSTRUCTION MÉTALLIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026'
-        },{
-           name: 'MOHAMED SERROUKH',
-           CIN: '24 mois',
-           specialization:'ÉLECTRICITÉ DU BÂTIMENT',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'AHMED EL AHRACH',
-           CIN: 'GB327498',
-           specialization:'MENUISERIE ALUMINIUM',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'FATHELLAH MOUTAIB',
-           CIN: 'BK247713',
-           specialization:'MÉDIAS ET JOURNALISME',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'ABDELAZIZ EDDOUR',
-           CIN: 'JB364881',
-           specialization:'FROID ET CLIMATISATION ',
-           dure:'24 mois',
-           dateJoin:'01/03/2018',
-           dateEnd:'01/03/2020' 
-        },{
-           name: 'ZAKARIA ESSEBTU',
-           CIN: 'QA202405',
-           specialization:'MENUISERIE ALUMINIUM',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'ISSA HADDAD',
-           CIN: 'JC437284',
-           specialization:'FABRICATION MÉCANIQUE GÉNÉRALE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'ASMA ELMASNAOUI',
-           CIN: 'MD21731',
-           specialization:'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
-           dure:'03 mois',
-           dateJoin:'01/07/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'ILHAM ALFAIRAM',
-           CIN: 'MJ20209',
-           specialization:'ÉDUCATRICE DE L’ENSEIGNEMENT PRÉSCOLAIRE',
-           dure:'06 mois',
-           dateJoin:'01/04/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'HIBA FADI',
-           CIN: 'M698983',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'LAHCEN LEMFARREG',
-           CIN: 'M591756',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'HOUSSAM JABRI',
-           CIN: 'MA184123',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'IMANE NIL',
-           CIN: 'MC334092',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'FATIMA JRAIF',
-           CIN: 'MD41778',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'MARWA BENSLIMA',
-           CIN: 'MC335578',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'RAJA BARDI',
-           CIN: 'M670741',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'HALA BESSAR',
-           CIN: 'M696204',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'JOUDIA JRAIF',
-           CIN: 'M669247',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'ASMA EL HAROUCH',
-           CIN: 'MD42526',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'SOUKAINA CHARKI',
-           CIN: 'MD37031',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'HIND NABIL',
-           CIN: 'MD37758',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'SALMA BACHAR',
-           CIN: 'MC329121',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'OMAIMA SRAIDI',
-           CIN: 'MA175673',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'LATIFA RACHID',
-           CIN: 'M608347',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'MADIHA ASAFI',
-           CIN: 'M698474',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'IMANE MESSIOUI',
-           CIN: 'M694831',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'SOUKAINA SELLAH',
-           CIN: 'M641997',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'IMANE NAWDALI',
-           CIN: 'MD42850',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'AMINA EL ANTARI',
-           CIN: 'HA160295',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'KHADIJA MNAOUR',
-           CIN: 'MA173005',
-           specialization:'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
-           dure:'10 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/10/2026' 
-        },{
-           name: 'EL AZIZ HAMID',
-           CIN: 'BB54865',
-           specialization:'DIAGNOSTIC ET MAINTENANCE AUTOMOBILE',
-           dure:'12 mois',
-           dateJoin:'01/03/2019',
-           dateEnd:'01/03/2020' 
-        },{
-           name: 'AIMAN ZIYAT',
-           CIN: 'LB241063',
-           specialization:'TECHNIQUES HÔTELIÈRES',
-           dure:'12 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'MAHMOUD IMASSOUDAT',
-           CIN: 'F435816',
-           specialization:'INFORMATIQUE DU GESTION',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'BADR FEREHATE',
-           CIN: 'XA90740',
-           specialization:'JARDINAGE ET AMÉNAGEMENT PAYSAGER',
-           dure:'24 mois',
-           dateJoin:'01/03/2018',
-           dateEnd:'01/03/2020' 
-        },{
-           name: 'IBRAHIM HAJAJI',
-           CIN: 'GM239193',
-           specialization:' L’HÔTELLERIE - BARMAN ET MIXOLOGIE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'REDOUANE BNE SBAA',
-           CIN: 'ID34861',
-           specialization:'COIFFURE ET L’ESTHÉTIQUE',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/206' 
-        },{
-           name: 'ABDESSAMAD ELOUAHMI',
-           CIN: 'EE942386',
-           specialization:'LA BOUCHERIE',
-           dure:'12 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'MOHCINE MAHFOUD',
-           CIN: 'Y361298',
-           specialization:'CONDUCTEUR D’ENGINS DE TRAVAUX PUBLICS',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'AISSA OUBOUHOUCH',
-           CIN: 'SH143450',
-           specialization:'GESTION DES STOCKS ET LOGISTIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2025' 
-        },{
-           name: 'MOULAY ELKABIR BELLATIF',
-           CIN: 'E460616',
-           specialization:'MANDATAIRE IMMOBILIER',
-           dure:'12 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'NAJIM SOUISSI',
-           CIN: 'KB32461',
-           specialization:'TRAVAIL EN SÉCURITÉ PRIVÉE ET SERVICES DE NETTOYAGE',
-           dure:'04 mois',
-           dateJoin:'01/01/2026',
-           dateEnd:'01/04/2026' 
-        },{
-           name: 'MEROUANE ZRHARI',
-           CIN: 'GB309551',
-           specialization:' L’HÔTELLERIE - BARMAN ET MIXOLOGIE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'SOUFIANE MARMOUCH',
-           CIN: 'EE908990',
-           specialization:'MONTEUR-CÂBLEUR EN RÉSEAUX DE TÉLÉCOMMUNICATIONS ET FIBRE OPTIQUE',
-           dure:'12 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'RACHID OUALI ALAMI',
-           CIN: 'CC4554',
-           specialization:'COMMERCE ET GESTION COMMERCIAL',
-           dure:'12 mois',
-           dateJoin:'01/03/2021',
-           dateEnd:'01/03/2022'
-        },{
-           name: 'MEHDI ELMLELLOUKI',
-           CIN: 'A686189',
-           specialization:'ÉLECTRICITÉ INDUSTRIELLE',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'RAHOUI ABDELKADER',
-           CIN: 'F645317',
-           specialization:'LA CUISINE MAROCAINE',
-           dure:'24 mois',
-           dateJoin:'01/03/2021',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'HANINE MOURAD',
-           CIN: 'Q249979',
-           specialization:'PLOMBEEIE ET INSTALLATIONS SANITAIRES',
-           dure:'24 mois',
-           dateJoin:'01/03/2020',
-           dateEnd:'01/03/2022' 
-        },{
-           name: 'ELIDRYSY SIDI MOH',
-           CIN: 'PA27372',
-           specialization:'LA PEINTURE ET LA DECORATION',
-           dure:'12 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2023' 
-        },{
-           name: 'SALMA ASSOU',
-           CIN: 'CD788061',
-           specialization:'L ART CULINAIRE ET TECHNIQUES DE CUISINE',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'ABDELHAKIM MORCHID',
-           CIN: 'AD298337',
-           specialization:'INATALLATIONS SOLAIRES PHOTOVOLTAIQUS',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'SOUAD KHOUZAYYEZ',
-           CIN: 'AD171444',
-           specialization:'INFIRMIER POLYVALENT',
-           dure:'24 mois',
-           dateJoin:'01/03/2022',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'YOUNES BELMZZAH',
-           CIN: 'EE801363',
-           specialization:'LA PEINTURE ET LA DÉCORATION',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'MUSTAPHA BAGHZALI',
-           CIN: 'BH153444',
-           specialization:'ÉLECTRICITÉ DU BÂTIMENT',
-           dure:'24 mois',
-           dateJoin:'01/03/2024',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'ISMAËL MOUZOUNE',
-           CIN: 'JE283178',
-           specialization:'ÉLECTRICITÉ INDUSTRIELLE',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'RACHID SALAH',
-           CIN: 'Z305393',
-           specialization:'MENUISERIE EN BOIS ET DÉCORATION',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        },{
-           name: 'SALMA LABYAD',
-           CIN: 'JA143865',
-           specialization:'L’ART DE LA PÂTISSERIE ET LA CRÉATION DE DESSERTS',
-           dure:'12 mois',
-           dateJoin:'01/03/2023',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'SALKA LABYAD',
-           CIN: 'JA167885',
-           specialization:'L’ART CULINAIRE ET TECHNIQUES DE CUISINE',
-           dure:'12 mois',
-           dateJoin:'01/03/2023',
-           dateEnd:'01/03/2024' 
-        },{
-           name: 'SI MOHAMED BELMSAHEL',
-           CIN: 'PA107603',
-           specialization:'MENUISERIE EN BOIS ET DÉCORATION',
-           dure:'12 mois',
-           dateJoin:'01/03/2025',
-           dateEnd:'01/03/2026' 
-        }
-         
-          ]
-/*{
-           name: 'SAID  ASSIL',
-           CIN: '',
-           specialization:'Mecanique industriell - Techniques electoniques- Electricite du batiment',
-           dure:'6 mois',
-           dateJoin:'01/3/2025',
-           dateEnd:'1/03/2026' 
-        },*/
-        document.getElementById('searsh').addEventListener('click', () => {
-              let inputName = document.getElementById('username').value.toLowerCase().replaceAll(' ','') 
-            
-            let inputCIN = document.getElementById('CIN').value.toLowerCase().replaceAll(' ','') 
+   <div id="into_back">
 
 
-            let found = false;
+      <div class="light x1"></div>
+      <div class="light x2"></div>
+      <div class="light x3"></div>
+      <div class="light x4"></div>
+      <div class="light x5"></div>
+      <div class="light x6"></div>
+      <div class="light x7"></div>
+      <div class="light x8"></div>
+      <div class="light x9"></div>
+   </div>
 
-            for (let i = 0; i < dataUser.length; i++) {
+   <div class="container">
 
-                let datauserName = dataUser[i].name.toLowerCase().replaceAll(' ','') 
-                let datauserCIN = dataUser[i].CIN.toLowerCase().replaceAll(' ','') 
+      <img src="Screenshot 2026-04-05 7.23.30 PM-Photoroom.png" alt="Logo">
+
+      <div id="inputs">
+         <input type="text" placeholder="اسم المستخدم" id="username">
+         <input type="text" placeholder="رقم البطاقة الوطنية (CIN)" id="CIN">
+         <button id="searsh">تحقق</button>
+      </div>
+
+      <div id="err" style="align-self: center;color: red; display: none; margin-top: 10px; font-weight: bold;">
+         اسم المستخدم هذا أو رقم البطاقة الوطنية غير موجود
+      </div>
+   </div>
+
+   <div id="degree">
+      <div id="result">
+         <div id="info">
+            <span>الاسم الكامل: <p id="name"></p></span>
+            <span>رقم البطاقة: <p id="CIN_info"></p></span>
+            <span>التخصص: <p id="specialization"></p></span>
+            <span>المدة: <p id="dure"></p></span>
+            <span>تاريخ الانضمام: <p id="join"></p></span>
+            <span>تاريخ التخرج: <p id="end"></p></span>
+         </div>
+      </div>
+   </div>
+
+   <script>
+      let dataUser = [
+         {
+            name: 'Ayoub Marnoufi',
+            CIN: 'HH105366',
+            specialization: 'Responsable QHSE',
+            dure: '1',
+            dateJoin: '03/15/2025',
+            dateEnd: '15/03/2026'
+         }, {
+            name: 'Fatima ezzahra Fax',
+            CIN: 'N440951',
+            specialization: 'aide-soignante',
+            dure: '2 mois',
+            dateJoin: '01/10/2025',
+            dateEnd: '1/01/2026'
+         }, {
+            name: 'Saleh Mikh Lbadaoui',
+            CIN: 'V322437',
+            specialization: 'Coiffure-Hommes &  Femmes',
+            dure: '6 mois',
+            dateJoin: '01/9/2025',
+            dateEnd: '1/02/2026'
+         }, {
+            name: 'Jamila Atmani',
+            CIN: 'S511832',
+            specialization: 'Techniques de peinture',
+            dure: '12 mois',
+            dateJoin: '01/3/2019',
+            dateEnd: '1/03/2020'
+         }, {
+            name: 'Laila Lebouihi',
+            CIN: 'HH189408',
+            specialization: 'Assistont Socail',
+            dure: '12 mois',
+            dateJoin: '01/1/2025',
+            dateEnd: '1/01/2026'
+         }, {
+            name: 'Abderrahim Moussafia',
+            CIN: 'BB41500',
+            specialization: 'La cuisine',
+            dure: '2 ans',
+            dateJoin: '01/1/2020',
+            dateEnd: '1/01/2022'
+         }, {
+            name: 'Ahmed El Bouhali',
+            CIN: 'G743846',
+            specialization: 'Prothese Dentaire',
+            dure: '1 ans',
+            dateJoin: '01/3/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'ADIL ENNAOUI',
+            CIN: 'BH557575',
+            specialization: 'Technique modernes de boucheri et de tronsformation de la viande',
+            dure: '1 ans',
+            dateJoin: '01/3/2018',
+            dateEnd: '1/03/2019'
+         }, {
+            name: 'Ahmed Darif',
+            CIN: 'X274822',
+            specialization: 'Mecanique industriell - Techniques electoniques- Electricite du batiment',
+            dure: '6 mois',
+            dateJoin: '01/3/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'YASSINE ZEGUENDOUPH',
+            CIN: 'LA189738',
+            specialization: 'Formation en Menuiserie Aluminium',
+            dure: '6 mois',
+            dateJoin: '01/9/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'JAMAL ELABOUDI',
+            CIN: 'IC46037',
+            specialization: 'Formation Monteur du Structures Metalliques',
+            dure: '6 mois',
+            dateJoin: '02/10/2020',
+            dateEnd: '2/02/2021'
+         }, {
+            name: 'ELMEHDI AIROUT',
+            CIN: 'AD303240',
+            specialization: 'Formation Travaux Divers du Batiment-Construction et Electricite',
+            dure: '6 mois',
+            dateJoin: '01/9/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'SOUFIANE GHARBAOUI',
+            CIN: 'WA180264',
+            specialization: 'Rsponsable Qualite, Hygiene, Securite et envireonnement',
+            dure: '12 mois',
+            dateJoin: '01/1/2020',
+            dateEnd: '1/02/2021'
+         }, {
+            name: 'KHADIJA HOUJJAJ',
+            CIN: 'G392981',
+            specialization: 'Education  de la Petite Enfance',
+            dure: '12 mois',
+            dateJoin: '01/3/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'Ahmed Darif',
+            CIN: 'X274822',
+            specialization: 'Mecanique industriell - Techniques electoniques- Electricite du batiment',
+            dure: '6 mois',
+            dateJoin: '01/3/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'ISSAME EL JANATI',
+            CIN: 'DO52560',
+            specialization: 'Instalation Sanitair et Plomberie',
+            dure: '6 mois',
+            dateJoin: '01/9/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'HASSAN EL MOSTAKIM',
+            CIN: 'BE726063',
+            specialization: 'Chef Professionnel en Cuisine et Patisserie',
+            dure: '6 mois',
+            dateJoin: '01/9/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'AIT ESSI ABDELKABIR',
+            CIN: 'JC118886',
+            specialization: 'PROFESSIONEL EN THERAPIE PAR VENTOUSE',
+            dure: '6 mois',
+            dateJoin: '01/9/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'KAMAL ED DOUYBY',
+            CIN: 'GJ30428',
+            specialization: 'PROFESSIONEL EN CONDUIT DES NACELLES ELEVATRICES ET SECURITE AU TRAVAIL',
+            dure: '12 mois',
+            dateJoin: '01/3/2023',
+            dateEnd: '1/03/2024'
+         }, {
+            name: 'YASSER ESSARHINI',
+            CIN: 'BM61247',
+            specialization: 'TECHNICIEN ELECTROMECANIQUE',
+            dure: '12 mois',
+            dateJoin: '01/3/2024',
+            dateEnd: '1/03/2025'
+         }, {
+            name: 'MOHAMED TINANI',
+            CIN: 'J415902',
+            specialization: 'PROFESSIONNELLE DE ASSISTANT TECHNIQUE EN TRAVAUX ET MAINTENANCE',
+            dure: '04 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '1/03/2026'
+         }, {
+            name: 'HOUDA AIROUT',
+            CIN: 'AD322213',
+            specialization: 'COIFFURE-FEMMES | ESTHETIQUE',
+            dure: '06 mois  | 06 mois',
+            dateJoin: '01/09/2021 |01/09/2018',
+            dateEnd: '3/03/2022|01/03/2019'
+         }, {
+            name: 'MOHAMED SULIMAN ABBKER ADAM',
+            CIN: 'P10187625',
+            specialization: 'ASSISTANT MEDICAL COMMUNAUTAIRE',
+            dure: '12 mois',
+            dateJoin: '01/06/2025',
+            dateEnd: '1/06/2026'
+         }, {
+            name: 'MOHAMMED AMINE BOUATERIA',
+            CIN: 'ZT309659',
+            specialization: ' TECHNIQUES HOTRLIERES',
+            dure: '06 mois',
+            dateJoin: '01/08/2024',
+            dateEnd: '1/02/2025'
+         }, {
+            name: 'AHMED MOTEA',
+            CIN: 'ZT302484',
+            specialization: 'TECHNIQUES DE CONSTRUCTION',
+            dure: '06 mois',
+            dateJoin: '03/02/2022',
+            dateEnd: '3/08/2022'
+         }, {
+            name: 'ANAS BENHADAR',
+            CIN: 'BW49563',
+            specialization: 'LA CUISINE',
+            dure: '12 mois',
+            dateJoin: '02/09/2019',
+            dateEnd: '02/09/2020'
+         }, {
+            name: 'BOULIF GHIZLANE',
+            CIN: 'BL53410',
+            specialization: 'INFIRMIERE',
+            dure: '12 mois',
+            dateJoin: '01/05/2018',
+            dateEnd: '01/05/2019'
+         }, {
+            name: 'OUSSAMA SIDKI',
+            CIN: 'IA228903',
+            specialization: 'TECHNIQUES DE CONSTRUCTION | INFIRMIERE POLYVALENT',
+            dure: '03 mois | 04 mois',
+            dateJoin: '05/09/2025| 01/01/2026',
+            dateEnd: '11/10/2025| 01/04/2026'
+         }, {
+            name: 'ABDELFATTAH EL WADILI',
+            CIN: 'EE743757',
+            specialization: 'BOUCHERIE',
+            dure: '24 mois',
+            dateJoin: '01/05/2016',
+            dateEnd: '01/05/2018'
+         }, {
+            name: 'MOHAMMED EZ-ZANNOUNY',
+            CIN: 'PA113296',
+            specialization: 'TECHNIQUES DE CONSTRUCTION',
+            dure: '04 mois',
+            dateJoin: '01/01/2025',
+            dateEnd: '01/04/2025'
+         }, {
+            name: 'FATIHA CHAFIQ',
+            CIN: 'JM25698',
+            specialization: 'PROFESSIONNELLE EN RESPONSABLE QUALITE',
+            dure: '24 mois',
+            dateJoin: '01/05/2021',
+            dateEnd: '01/05/2023'
+         }, {
+            name: 'TAYEB ZDAG',
+            CIN: 'DO45763',
+            specialization: 'PROFESSIONNELLE EN PATISSERIE',
+            dure: '04 mois',
+            dateJoin: '01/11/2021',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'ALAA EL MOUDDEN',
+            CIN: 'AE230666',
+            specialization: 'PROFESSIONNELLE EN GASTRONOMIE',
+            dure: '24 mois',
+            dateJoin: '01/09/2020',
+            dateEnd: '01/09/2022'
+         }, {
+            name: 'HAMZA OUMELLOUCHE',
+            CIN: 'IA232686',
+            specialization: ' INFIRMIERE POLYVALENT',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/05/2026'
+         }, {
+            name: 'MANAL EL FRIMI',
+            CIN: 'CD945443',
+            specialization: 'PROFESSIONNELLE EN GASTRONOMIE',
+            dure: '12 mois',
+            dateJoin: '01/12/2023',
+            dateEnd: '01/12/2024'
+         }, {
+            name: 'MOHAMED ETTAJANI',
+            CIN: 'EE847074',
+            specialization: 'PROFESSIONNELLE EN BOUCHER POLYVALENT',
+            dure: '12 mois',
+            dateJoin: '01/05/2022',
+            dateEnd: '01/05/2023'
+         }, {
+            name: 'AYOUB EL OUAJIDI',
+            CIN: 'M417555',
+            specialization: 'COIFFURE-MASCULINE',
+            dure: '09 mois',
+            dateJoin: '01/06/2017',
+            dateEnd: '27/02/2018'
+         }, {
+            name: 'FARID SALAH',
+            CIN: 'BE97757',
+            specialization: 'CONDUITE PROFESSIONNELLE',
+            dure: '04 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'AIT LAHCEN ABDERRAHIM',
+            CIN: 'BB69356',
+            specialization: 'ELECTROMECANIQUE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'HAMDIA OMAR',
+            CIN: 'GN105421',
+            specialization: 'MENUISERIE BOIS ET MACHINES A BOIS',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'MOHAMMED El MARBOUH',
+            CIN: 'SH188281',
+            specialization: 'COIFFURE ET ESTHETIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'OUSSAMA ES-SALEMY',
+            CIN: 'Y527251',
+            specialization: 'AMENAGEMENT ET DECORATION EN PLATRE',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'ABDERRAHAMANE EL HABBI',
+            CIN: 'C302898',
+            specialization: 'PROTHESE DENTAIRE',
+            dure: '24mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'HAJAR BOUZAROITA',
+            CIN: 'Z738758',
+            specialization: 'AIDE-SOIGNANTE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'AHMED EL MALLAGUI',
+            CIN: 'C719573',
+            specialization: 'INFORMATIQUE DES SYSTEMES DE INFORMATION',
+            dure: '12 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'YOUNESS AKHDIM',
+            CIN: 'WA323547',
+            specialization: 'INFORMATIQUE DES ORGANISATION | INFORMATIQUE DES SYSTEMES DE INFORMATION',
+            dure: '12mois',
+            dateJoin: '01/01/2024|01/03/2025',
+            dateEnd: '01/01/2025|01/03/2026'
+         }, {
+            name: 'MOHAMED BALAMINE',
+            CIN: 'VA153930',
+            specialization: 'MECANIQUE AUTOMOBILE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ANOUAR ALLIOUI',
+            CIN: 'AD345357',
+            specialization: ' ELECTRONIQUE ET MECANIQUE AUTOMOBILE EMBARQUEE',
+            dure: '12 mois',
+            dateJoin: '01/01/2025',
+            dateEnd: '01/01/2026'
+         }, {
+            name: 'YASSINE AZELGANE',
+            CIN: 'AS7987',
+            specialization: 'MAINTENANCE INDUSTRIELLE',
+            dure: '12 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'AOTHMAN EL BOUDI',
+            CIN: 'EE938646',
+            specialization: 'LA CUISINE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'RACHID  OUALI',
+            CIN: 'X286980',
+            specialization: 'MENUISERIE ALUMINIUM',
+            dure: '12 mois',
+            dateJoin: '01/03/2023',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'MINA FATNACI',
+            CIN: 'C402457',
+            specialization: ' LA PATRISSERIE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ILYAS AIT OUMGHAR',
+            CIN: 'SH230028',
+            specialization: 'LA PEINTURE ET DECORATION',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'OUCHTAK',
+            CIN: 'JC646985',
+            specialization: ' LA PEINTURE ET DECORATION',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'KAOUTAR NAMAN',
+            CIN: 'S688271',
+            specialization: ' LA CUISINE',
+            dure: '12 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'MUSTAPHA HMIDAT',
+            CIN: 'EE755741',
+            specialization: ' SERRURERIE ET METALLERIE',
+            dure: '12 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'SANAE ECHCHAFRI',
+            CIN: 'GB279807',
+            specialization: ' DE INFIRMIER',
+            dure: '04 mois',
+            dateJoin: '01/01/2025',
+            dateEnd: '01/04/2025'
+         }, {
+            name: 'HIND EL ANSSARI',
+            CIN: 'PB131238',
+            specialization: 'AIDE-SOIGNANTE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'HICHAM BOUROUZ',
+            CIN: 'F764324',
+            specialization: ' SPORTS MANAGEMENT ET CREAITION DE EVENEMENTS SPORTS',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'AMINE HAMMAN ELKASRI',
+            CIN: 'L626431',
+            specialization: ' ELECTRICITE DU BATIMENT',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'ZOUHAIR EL ALLAM',
+            CIN: 'E651596',
+            specialization: 'ANIMATION ARTISTIQUE ET EDUCATIVE EN MILIEU SCOLAIRE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'NAZHA EL ALLAM',
+            CIN: 'EE80372',
+            specialization: 'EDUCATRICE DE LE ENSEIGNEMENT PRESCOLAIRE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'KAOUTAR NAMAN',
+            CIN: 'S688271',
+            specialization: 'LA COUSINE',
+            dure: '12 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'BOULEFRA ABDELLATIF',
+            CIN: 'JB288638',
+            specialization: 'TECHNICIEN SPECIALISE ELECTRICITER DU BATIMENT',
+            dure: '12 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'ABDELALI CHUJAE',
+            CIN: 'C428018',
+            specialization: 'ELECTRICITER GENERALE',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'BRAHIM DADDAH',
+            CIN: 'SH219892',
+            specialization: 'ANIMATEUR EN QUALITE, HYGIENE, SECURITE ET ENVIRONNEMENT',
+            dure: '12 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'AZOUAOU MOHAMED',
+            CIN: 'UA28157',
+            specialization: 'TECHNICIEN SUPERIEUR EN ELECTRICITER INDUSTRIELLE ET SYSTEMES ELECTROTECHNIQUES',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'BOURAZZA ABDERRAHMANE',
+            CIN: 'F516961',
+            specialization: 'MENUISERIE ALUMINIUM',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'YOUNSE ZIANE',
+            CIN: 'D567680',
+            specialization: 'MECANIQUE AUTOMOBILE',
+            dure: '12 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'SAMI GHARBOUCHE',
+            CIN: 'HH261608',
+            specialization: 'INFIRMIERE POLYVALENT',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'HIBA KAHLI',
+            CIN: 'HH262797',
+            specialization: 'INFIRMIERE POLYVALENT',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'OUCHTAK KHALID',
+            CIN: 'JC646985',
+            specialization: 'PEINTURE ET DECORATION',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'REDOUANE SEBBOUTI',
+            CIN: 'G375592',
+            specialization: 'SOUDAGE ET CONSTRUCTION METALLIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MOHAMED SOUFIANE BENTITA',
+            CIN: 'AS15227',
+            specialization: 'ANIMATEUR EN QUALITE, HYGIENE, SECURITE ET ENVIRONNEMENT',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MOUHCINE RAJRAJ',
+            CIN: 'EE365101',
+            specialization: 'PROTHESE DENTAIR',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'SALAHEDDINE DIBE',
+            CIN: 'GM162267',
+            specialization: 'COMMERCE ET GESTION COMMERCIALE',
+            dure: '24 mois',
+            dateJoin: '01/03/2021',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'SOUAF  ABDELILAH',
+            CIN: 'BJ349986',
+            specialization: 'SUPERVISEUR EN HYGIENE - SECURITE ET ENVIREONNENT',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'MANAL EL KHOUDIRI',
+            CIN: 'BJ498310',
+            specialization: 'COMMERCE ET GESTION COMMERCIALE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MBAREK ID-MHAND ',
+            CIN: 'N491931',
+            specialization: 'COUTURE ET BRODERIE',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'MOHAMED GHAFIL',
+            CIN: 'AB161161',
+            specialization: ' ELECTROMECANIQUE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MOHAMED BALHAD',
+            CIN: 'J535419',
+            specialization: ' LA CUISINE',
+            dure: '06 mois',
+            dateJoin: '01/09/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ACHRAF NOKRI',
+            CIN: 'BH373321',
+            specialization: 'LOGISTIQUE ET CONDUITE DES CHARIOTS ELEVATEURS',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'AYOUB ELHAMDANI',
+            CIN: 'HH314224',
+            specialization: 'MECANIQUE AUTOMOBILE',
+            dure: '04 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'YOUNES EL MAHIR',
+            CIN: 'N213475',
+            specialization: 'AGRICULTURE ET ELEVAGE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'REDOUANE KHARDIOUI',
+            CIN: 'UD20881',
+            specialization: 'ECHNIQUES DE CONSTRUCTION',
+            dure: '12 mois',
+            dateJoin: '01/07/2025',
+            dateEnd: '01/07/2026'
+         }, {
+            name: 'BENYAZZA LAHCEN',
+            CIN: 'H695449',
+            specialization: 'RESPONSABLE POLYVALENT EN MAINTENANCE INDUSTRIELLE ET HSE - MANAGEMENT DE LA QUALITE',
+            dure: '24 MOIS - 12 MOIS',
+            dateJoin: '01/03/2020 - 01/03/2025',
+            dateEnd: '01/03/2022 - 01/03/2026'
+         }, {
+            name: 'HAMZA EL ARFAOUI',
+            CIN: 'CD636088',
+            specialization: 'ECHNIQUES DE CONSTRUCTION',
+            dure: '24 mois',
+            dateJoin: '01/03/2017',
+            dateEnd: '01/03/2019'
+         }, {
+            name: 'MBAREK AJOUKI',
+            CIN: 'G528264',
+            specialization: 'PEINTURR DE DECORATION ',
+            dure: '04 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MOHAMED BOUIALLOUCHEN',
+            CIN: 'V264879',
+            specialization: 'FROID ET CLIMATISATION ',
+            dure: '04 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MOHAMED ELBAKKALI',
+            CIN: 'BE793029',
+            specialization: 'COMMERCE ET GESTION COMMERCIALE ',
+            dure: '12 mois',
+            dateJoin: '01/3/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'ZAKARIA AITBOUDAKIK',
+            CIN: 'PB325156',
+            specialization: 'PLOMBERIE ET INSTALLATIONS SANITAIRES ',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ILYAS FARIDI',
+            CIN: 'UD19996',
+            specialization: 'RESPONSABLE HOTELIER ',
+            dure: '24 mois',
+            dateJoin: '02/01/2024',
+            dateEnd: '01/01/2026'
+         }, {
+            name: 'ABDELKARIM ED DIMNATI',
+            CIN: 'Y441231',
+            specialization: 'ELECTRICITE INDUSTRIELLE ',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'AZIZ SMAANAT',
+            CIN: 'XA100561',
+            specialization: 'LA COIFFURE ET ESTHETIQUE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'WALID SALHI',
+            CIN: 'FA170905',
+            specialization: 'ELECTRICITE AUTOMOBILE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'KHALID ELHAJJAJI',
+            CIN: 'AD125741',
+            specialization: 'ELECTRICITE INDUSTRIELLE',
+            dure: '24 mois',
+            dateJoin: '01/06/2018',
+            dateEnd: '01/06/2020'
+         }, {
+            name: 'HAFSA BOUAICHI',
+            CIN: 'UC146970',
+            specialization: 'LA PATISSERIE-COUTURE ET BRODERIE',
+            dure: '12 mois-12 mois',
+            dateJoin: '01/03/2024-01/04/2025',
+            dateEnd: '01/03/2025-01/04/2026'
+         }, {
+            name: 'EL AIDY KOUJJEI',
+            CIN: 'S361511',
+            specialization: 'REVETEMENT EN MARBRE- PIERRE ET CARRELAGE',
+            dure: '24',
+            dateJoin: '01/03/2021',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'NOURDDINE AMAZZANE',
+            CIN: 'SK2364',
+            specialization: 'TRANSPORT ET LOGISTIQUE',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'MOUNIR LAARAJ',
+            CIN: 'CD604505',
+            specialization: 'COMMERCE ET GESTION COMMERCIAL',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'MORAD EL KELMA',
+            CIN: 'JC420031',
+            specialization: 'AGENT ADMINISTRATIF',
+            dure: '12 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'ABDELHAK ELALAMI',
+            CIN: 'WA165724',
+            specialization: 'CHEF DE CHANTIER EN CONSTRUCTION',
+            dure: '04 mois',
+            dateJoin: '01/01/2020',
+            dateEnd: '01/04/2020'
+         }, {
+            name: 'RACHID ELHANANY',
+            CIN: 'I502114',
+            specialization: ' JARDINAGE ET AMENGEMENT PAYSAGER',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'AYOUB EL GOURYANI',
+            CIN: 'HA218487',
+            specialization: ' SOUDAGE ET CONSTRUCTION METALLIQUE',
+            dure: '24 mois',
+            dateJoin: '01/03/2018',
+            dateEnd: '01/03/2020'
+         }, {
+            name: 'MOHAMMED EL HADDADI',
+            CIN: 'R300967',
+            specialization: 'THERAPIE PAR VENTEUS',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'AZIZ NEQZAOUI',
+            CIN: 'IB142578',
+            specialization: 'REVETEMENT EN MARBRE-PIERRE ET CARRELAGE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ABDELHAK ELALAMI',
+            CIN: 'WA165724',
+            specialization: 'CHEF DE CHANTIER EN CONSTRUCTION',
+            dure: '04 mois',
+            dateJoin: '01/01/2020',
+            dateEnd: '01/04/2020'
+         }, {
+            name: 'NABIL ELKHIATI',
+            CIN: 'H469172',
+            specialization: 'AGENT DE SECURITE ET DE GARDIENNAGE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: ' HAMID TAGHZOUT',
+            CIN: 'CB270491',
+            specialization: 'OUVRIER QUALIFIE-OPERATEUR DE STATION DE CONCASSAGE ET DE CRIBLAGE',
+            dure: '12 mois',
+            dateJoin: '01/09/2025',
+            dateEnd: '28/08/2026'
+         }, {
+            name: 'ISMAIL WANAIM',
+            CIN: 'JC584574',
+            specialization: 'PLOMBERIE ET INSTALLATIONS SANITAIRES',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'HASSAN HAMOUCHI',
+            CIN: 'BK356675',
+            specialization: 'LA CUISINE',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'ADAM SNINA',
+            CIN: 'DM9328',
+            specialization: ' DIAGNOSTIC ET MAINTENANCE AUTOMOBILE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'YOUSSEF CHARAFI',
+            CIN: 'JA192138',
+            specialization: ' LA PATISSERIE',
+            dure: '12 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'HAMMIOUI ABDELKBIR',
+            CIN: 'IB231778',
+            specialization: 'FABRICATION MECANIQUE GENERALE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'HAMID TAOURA',
+            CIN: 'P265667',
+            specialization: 'MENUISERIE EN BOIS ET DECORATION',
+            dure: '24 mois',
+            dateJoin: '01/03/2016',
+            dateEnd: '01/03/2018'
+         }, {
+            name: 'ABDELLATIF JOUIRRA',
+            CIN: 'AD365047',
+            specialization: 'COIFFURE ET LESTHETIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'MOHAMED EL ATI',
+            CIN: 'LB271120',
+            specialization: 'SCIENCES DE LA TERRE ET GEOLOGIE APPLIQUEE',
+            dure: '12 mois',
+            dateJoin: '01/09/2024',
+            dateEnd: '01/09/2025'
+         }, {
+            name: 'BILAL SALMUN',
+            CIN: 'KB90410',
+            specialization: 'TRANSFORMATION ET PRPARATION DES PRODUITS DE LA PECHE',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'ABDESSAMAD LOUKIRI',
+            CIN: 'JH67155',
+            specialization: 'ELECTRICIEN INSTALLATEUR DE CHAMERS DE SURVEILLANCE',
+            dure: '12 mois',
+            dateJoin: '01/03/2021',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'SAID LASRI',
+            CIN: 'BE3636176',
+            specialization: 'FABRICATION DE CHAUSSURES',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'FRIMANE THAMI',
+            CIN: 'BJ390131',
+            specialization: 'CHAUDRONNIER',
+            dure: '24 mois',
+            dateJoin: '01/03/2019',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'EL AMIN TAIDI EL OUAHABI',
+            CIN: 'KB46521',
+            specialization: 'ELECTRICITE INDUSTRIELLE',
+            dure: '12 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'JAMAI JAIL',
+            CIN: 'T208538',
+            specialization: 'MENUISERIE ALUMINIUM',
+            dure: '12 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'AZIZ RILA',
+            CIN: 'Y200889',
+            specialization: ' SOUDAGE ET CONSTRUCTION METALLIQUE',
+            dure: '24 mois',
+            dateJoin: '01/03/2018',
+            dateEnd: '01/03/2020'
+         }, {
+            name: 'ZOHAIR ELBORDIJI',
+            CIN: 'SH193146',
+            specialization: 'ELECTRICITE INDUSTRIELLE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'AZIZ SABER',
+            CIN: 'CD173716',
+            specialization: 'AMENAGEMENT ET DECORATION EN PLATRE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ABDELMALEK ET-TAHIRY',
+            CIN: 'CD399869',
+            specialization: 'AGRICULTURE ET PRODUCTION AGRICOLE',
+            dure: '12 mois',
+            dateJoin: '01/03/2019',
+            dateEnd: '01/03/2020'
+         }, {
+            name: 'MOHAMMED MAGHRAOUI',
+            CIN: 'C438234',
+            specialization: 'CARRELAGE ET REVETEMENTS DE SOLS ET MURS',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'TAOUFIK SAFHI',
+            CIN: 'CD291337',
+            specialization: 'MENUISERIE EN BOIS ET DECORATION',
+            dure: '24 mois',
+            dateJoin: '01/03/2019',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'ADIL HSSAINI',
+            CIN: 'IA224771',
+            specialization: ' LA CUISINE',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'MOHAMMAD EL IDRISSI',
+            CIN: 'KB9161',
+            specialization: 'ELECTRICITE INDUSTRIELLE',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'MOHAMED BELHAOUIDEG',
+            CIN: 'E764651',
+            specialization: 'LA COUTURE ET BRODERIE',
+            dure: '12 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2021'
+         }, {
+            name: 'MOUAAD BELAAYD',
+            CIN: 'YT9969',
+            specialization: 'AGRICULTURE ET PRODUCTION AGRICOLE',
+            dure: '24 mois',
+            dateJoin: '10/01/2024',
+            dateEnd: '10/01/2026'
+         }, {
+            name: 'DRISS EL YAMAMI',
+            CIN: 'JC649001',
+            specialization: 'PEINTURE ET DECORATION',
+            dure: '24 mois',
+            dateJoin: '01/03/2021',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'RACHIDA ESSEMKAOUI',
+            CIN: 'M695931',
+            specialization: 'TECHNIQUES HOTELIERES',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'SALMAN BEN ZIANE',
+            CIN: 'KB204749',
+            specialization: 'PEINTURE ET DECORATION',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'FATIMA ZAHRAA MAHBOUBI',
+            CIN: 'BM28538',
+            specialization: 'COIFFURE ET LESTHETIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'YASSINE HMICH',
+            CIN: 'MD24679',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'MERIEM DARIF',
+            CIN: 'M557674',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'HANANE AFIFI',
+            CIN: 'MC312798',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'AICHA SAMID',
+            CIN: 'M660964',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'KHADIJA EL ABDI',
+            CIN: 'M651288',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'MOHAMMED BOUADEL',
+            CIN: 'M659134',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'ZAHRA MGAIZ',
+            CIN: 'M427341',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'HIBA TAQSI',
+            CIN: 'M713451',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/12/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'SAMIRA EDDAHBI',
+            CIN: 'MC340712',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'SARA ATAR',
+            CIN: 'M691115',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'KHADIJA EL FADILI',
+            CIN: 'M659567',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'ZINEB ELGABOURI',
+            CIN: 'HH350945',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'NAJOUA EL FADILI',
+            CIN: 'D584184',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'RADIA KHACHANE',
+            CIN: 'MC329840',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'NAJIA DARROUJI',
+            CIN: 'M650411',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'AMINA CHAKROUNE',
+            CIN: 'M674247',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'HASSNA BAHAR',
+            CIN: 'MC328278',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'AYOUB EN-NAJAR',
+            CIN: 'MD38302',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'ABDELAAZIZ EL MAHJOUR',
+            CIN: 'MD36959',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'NABILA ERRABIA',
+            CIN: 'M573292',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'HASNAE BELKADA',
+            CIN: 'M653569',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'SIHAM ABDELMJID',
+            CIN: 'MC335544',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'ASSMAA ELATTAOUY',
+            CIN: 'MC334735',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/06/2026',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'KENZA BEGGAR',
+            CIN: 'MD37947',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'HIND RHALID',
+            CIN: 'M707204',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/12/2025',
+            dateEnd: '01/09/2026'
+         }, {
+            name: 'RACHID BOUJANNAH',
+            CIN: 'GN164517',
+            specialization: ' SOUDAGE ET CONSTRUCTION METALLIQUE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MAROUAN RAMOU',
+            CIN: 'LB259476',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '24 mois',
+            dateJoin: '01/03/2023',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'NAJIB OUAHABI',
+            CIN: 'K463630',
+            specialization: 'FABRICATION MÉCANIQUE GÉNÉRALE',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'ABDELGHNI LACHGUAR',
+            CIN: 'E505393',
+            specialization: 'CARRELAGE ET REVETEMENTS DE SOLS ET MURS',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'ABDERRAHIM BENTALHA',
+            CIN: 'LB248344',
+            specialization: 'ARTS PLASTIQUES ET ARTS MUSICAUX',
+            dure: '12 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'MIMOUN AGOUjil',
+            CIN: 'ZG145103',
+            specialization: 'MENUISERIE ALUMINIUM',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'ABDELGHNI LACHGUAR',
+            CIN: 'E505393',
+            specialization: 'CARRELAGE ET REVETEMENTS DE SOLS ET MURS',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'HICHAM KHAYATI',
+            CIN: 'LB265961',
+            specialization: 'GESTION DES ENTREPRISES',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'YASSINE EL ARFAOUY',
+            CIN: 'ZT200053',
+            specialization: 'LA COUTURE ET BRODERIE',
+            dure: '04 mois',
+            dateJoin: '01/01/2022',
+            dateEnd: '01/04/2022'
+         }, {
+            name: 'BRAHIM OUBAKSSAINE',
+            CIN: 'PA223991',
+            specialization: 'PLOMBERIE ET INSTALLATIONS SANITAIRES',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'MERSAL ABDELILAH',
+            CIN: 'H153436',
+            specialization: 'LA MECANIQUE DES ENGINS MARITIMES',
+            dure: '12 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'MOUNCEF NEJJARI',
+            CIN: 'WA309604',
+            specialization: 'INFORMATIQUE DU GESTION',
+            dure: '12 mois',
+            dateJoin: '01/07/2021',
+            dateEnd: '01/07/2022'
+         }, {
+            name: 'MOHAMED EL AMMARI',
+            CIN: 'CB154486',
+            specialization: 'OPÉRATEUR D’EMBALLAGE ET DE MISE',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'OMAR BOUCHAROUR',
+            CIN: 'F739436',
+            specialization: 'SOUDAGE ET CONSTRUCTION METALLIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'HAKIMA MAROUANE',
+            CIN: 'CD522965',
+            specialization: 'ASSISTANT SOCIAL',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'YOUSSEF BOUMSISS',
+            CIN: 'V257826',
+            specialization: 'MENUISERIE EN BOIS ET DÉCORATION',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'ACHRAF NOURI',
+            CIN: 'WA362822',
+            specialization: 'ÉDUCATION PHYSIQUE ET SPORTIVE',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'OUMAYMA EL MARID',
+            CIN: 'LA183499',
+            specialization: 'ÉLECTRICITÉ INDUSTRIELLE',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'FATIHA ALLAM',
+            CIN: 'C607829',
+            specialization: 'LA CUISINE',
+            dure: '12 mois',
+            dateJoin: '01/03/2021',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'SOUFIANE TOUBAT',
+            CIN: 'CD343213',
+            specialization: 'LA COIFFURE ET L’ESTHÉTIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2023',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'FATIMA ZAHRAE DAYNANA',
+            CIN: 'CD993126',
+            specialization: 'INFORMATIQUE DU GESTION',
+            dure: '12 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'HAFID HARROUR',
+            CIN: 'GA151039',
+            specialization: 'AMÉNAGEMENT ET DÉCORATION EN PLÂTRE',
+            dure: '04 mois',
+            dateJoin: '01/01/2022',
+            dateEnd: '01/04/2022'
+         }, {
+            name: 'YOUSSEF EL OUALI',
+            CIN: 'Z329500',
+            specialization: 'MAINTENANCE ET RÉPARATION DES APPAREILS ÉLECTROMÉNAGERS ET DE CLIMATISATION',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'MOHAMMED MOUSSAIR',
+            CIN: 'T212703',
+            specialization: 'ÉLECTRICITÉ DU BÂTIMENT',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'ABDENNOUR EL HAYMER',
+            CIN: 'LB267292',
+            specialization: 'SOUDAGE ET CONSTRUCTION MÉTALLIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MOHAMED SERROUKH',
+            CIN: '24 mois',
+            specialization: 'ÉLECTRICITÉ DU BÂTIMENT',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'AHMED EL AHRACH',
+            CIN: 'GB327498',
+            specialization: 'MENUISERIE ALUMINIUM',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'FATHELLAH MOUTAIB',
+            CIN: 'BK247713',
+            specialization: 'MÉDIAS ET JOURNALISME',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'ABDELAZIZ EDDOUR',
+            CIN: 'JB364881',
+            specialization: 'FROID ET CLIMATISATION ',
+            dure: '24 mois',
+            dateJoin: '01/03/2018',
+            dateEnd: '01/03/2020'
+         }, {
+            name: 'ZAKARIA ESSEBTU',
+            CIN: 'QA202405',
+            specialization: 'MENUISERIE ALUMINIUM',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ISSA HADDAD',
+            CIN: 'JC437284',
+            specialization: 'FABRICATION MÉCANIQUE GÉNÉRALE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ASMA ELMASNAOUI',
+            CIN: 'MD21731',
+            specialization: 'ANIMATEUR HYGIÈNE - SÉCURITÉ - ENVIRONNEMENT',
+            dure: '03 mois',
+            dateJoin: '01/07/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'ILHAM ALFAIRAM',
+            CIN: 'MJ20209',
+            specialization: 'ÉDUCATRICE DE L’ENSEIGNEMENT PRÉSCOLAIRE',
+            dure: '06 mois',
+            dateJoin: '01/04/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'HIBA FADI',
+            CIN: 'M698983',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'LAHCEN LEMFARREG',
+            CIN: 'M591756',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'HOUSSAM JABRI',
+            CIN: 'MA184123',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'IMANE NIL',
+            CIN: 'MC334092',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'FATIMA JRAIF',
+            CIN: 'MD41778',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'MARWA BENSLIMA',
+            CIN: 'MC335578',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'RAJA BARDI',
+            CIN: 'M670741',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'HALA BESSAR',
+            CIN: 'M696204',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'JOUDIA JRAIF',
+            CIN: 'M669247',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'ASMA EL HAROUCH',
+            CIN: 'MD42526',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'SOUKAINA CHARKI',
+            CIN: 'MD37031',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'HIND NABIL',
+            CIN: 'MD37758',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'SALMA BACHAR',
+            CIN: 'MC329121',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'OMAIMA SRAIDI',
+            CIN: 'MA175673',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'LATIFA RACHID',
+            CIN: 'M608347',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'MADIHA ASAFI',
+            CIN: 'M698474',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'IMANE MESSIOUI',
+            CIN: 'M694831',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'SOUKAINA SELLAH',
+            CIN: 'M641997',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'IMANE NAWDALI',
+            CIN: 'MD42850',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'AMINA EL ANTARI',
+            CIN: 'HA160295',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'KHADIJA MNAOUR',
+            CIN: 'MA173005',
+            specialization: 'INFORMATIQUE DES SYSTÈMES D’INFORMATION',
+            dure: '10 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/10/2026'
+         }, {
+            name: 'EL AZIZ HAMID',
+            CIN: 'BB54865',
+            specialization: 'DIAGNOSTIC ET MAINTENANCE AUTOMOBILE',
+            dure: '12 mois',
+            dateJoin: '01/03/2019',
+            dateEnd: '01/03/2020'
+         }, {
+            name: 'AIMAN ZIYAT',
+            CIN: 'LB241063',
+            specialization: 'TECHNIQUES HÔTELIÈRES',
+            dure: '12 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'MAHMOUD IMASSOUDAT',
+            CIN: 'F435816',
+            specialization: 'INFORMATIQUE DU GESTION',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'BADR FEREHATE',
+            CIN: 'XA90740',
+            specialization: 'JARDINAGE ET AMÉNAGEMENT PAYSAGER',
+            dure: '24 mois',
+            dateJoin: '01/03/2018',
+            dateEnd: '01/03/2020'
+         }, {
+            name: 'IBRAHIM HAJAJI',
+            CIN: 'GM239193',
+            specialization: ' L’HÔTELLERIE - BARMAN ET MIXOLOGIE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'REDOUANE BNE SBAA',
+            CIN: 'ID34861',
+            specialization: 'COIFFURE ET L’ESTHÉTIQUE',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/206'
+         }, {
+            name: 'ABDESSAMAD ELOUAHMI',
+            CIN: 'EE942386',
+            specialization: 'LA BOUCHERIE',
+            dure: '12 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'MOHCINE MAHFOUD',
+            CIN: 'Y361298',
+            specialization: 'CONDUCTEUR D’ENGINS DE TRAVAUX PUBLICS',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'AISSA OUBOUHOUCH',
+            CIN: 'SH143450',
+            specialization: 'GESTION DES STOCKS ET LOGISTIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2025'
+         }, {
+            name: 'MOULAY ELKABIR BELLATIF',
+            CIN: 'E460616',
+            specialization: 'MANDATAIRE IMMOBILIER',
+            dure: '12 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'NAJIM SOUISSI',
+            CIN: 'KB32461',
+            specialization: 'TRAVAIL EN SÉCURITÉ PRIVÉE ET SERVICES DE NETTOYAGE',
+            dure: '04 mois',
+            dateJoin: '01/01/2026',
+            dateEnd: '01/04/2026'
+         }, {
+            name: 'MEROUANE ZRHARI',
+            CIN: 'GB309551',
+            specialization: ' L’HÔTELLERIE - BARMAN ET MIXOLOGIE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'SOUFIANE MARMOUCH',
+            CIN: 'EE908990',
+            specialization: 'MONTEUR-CÂBLEUR EN RÉSEAUX DE TÉLÉCOMMUNICATIONS ET FIBRE OPTIQUE',
+            dure: '12 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'RACHID OUALI ALAMI',
+            CIN: 'CC4554',
+            specialization: 'COMMERCE ET GESTION COMMERCIAL',
+            dure: '12 mois',
+            dateJoin: '01/03/2021',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'MEHDI ELMLELLOUKI',
+            CIN: 'A686189',
+            specialization: 'ÉLECTRICITÉ INDUSTRIELLE',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'RAHOUI ABDELKADER',
+            CIN: 'F645317',
+            specialization: 'LA CUISINE MAROCAINE',
+            dure: '24 mois',
+            dateJoin: '01/03/2021',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'HANINE MOURAD',
+            CIN: 'Q249979',
+            specialization: 'PLOMBEEIE ET INSTALLATIONS SANITAIRES',
+            dure: '24 mois',
+            dateJoin: '01/03/2020',
+            dateEnd: '01/03/2022'
+         }, {
+            name: 'ELIDRYSY SIDI MOH',
+            CIN: 'PA27372',
+            specialization: 'LA PEINTURE ET LA DECORATION',
+            dure: '12 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2023'
+         }, {
+            name: 'SALMA ASSOU',
+            CIN: 'CD788061',
+            specialization: 'L ART CULINAIRE ET TECHNIQUES DE CUISINE',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ABDELHAKIM MORCHID',
+            CIN: 'AD298337',
+            specialization: 'INATALLATIONS SOLAIRES PHOTOVOLTAIQUS',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'SOUAD KHOUZAYYEZ',
+            CIN: 'AD171444',
+            specialization: 'INFIRMIER POLYVALENT',
+            dure: '24 mois',
+            dateJoin: '01/03/2022',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'YOUNES BELMZZAH',
+            CIN: 'EE801363',
+            specialization: 'LA PEINTURE ET LA DÉCORATION',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'MUSTAPHA BAGHZALI',
+            CIN: 'BH153444',
+            specialization: 'ÉLECTRICITÉ DU BÂTIMENT',
+            dure: '24 mois',
+            dateJoin: '01/03/2024',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'ISMAËL MOUZOUNE',
+            CIN: 'JE283178',
+            specialization: 'ÉLECTRICITÉ INDUSTRIELLE',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'RACHID SALAH',
+            CIN: 'Z305393',
+            specialization: 'MENUISERIE EN BOIS ET DÉCORATION',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }, {
+            name: 'SALMA LABYAD',
+            CIN: 'JA143865',
+            specialization: 'L’ART DE LA PÂTISSERIE ET LA CRÉATION DE DESSERTS',
+            dure: '12 mois',
+            dateJoin: '01/03/2023',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'SALKA LABYAD',
+            CIN: 'JA167885',
+            specialization: 'L’ART CULINAIRE ET TECHNIQUES DE CUISINE',
+            dure: '12 mois',
+            dateJoin: '01/03/2023',
+            dateEnd: '01/03/2024'
+         }, {
+            name: 'SI MOHAMED BELMSAHEL',
+            CIN: 'PA107603',
+            specialization: 'MENUISERIE EN BOIS ET DÉCORATION',
+            dure: '12 mois',
+            dateJoin: '01/03/2025',
+            dateEnd: '01/03/2026'
+         }
+
+      ]
+      /*{
+                 name: 'SAID  ASSIL',
+                 CIN: '',
+                 specialization:'Mecanique industriell - Techniques electoniques- Electricite du batiment',
+                 dure:'6 mois',
+                 dateJoin:'01/3/2025',
+                 dateEnd:'1/03/2026' 
+              },*/
+      document.getElementById('searsh').addEventListener('click', () => {
+         let inputName = document.getElementById('username').value.toLowerCase().replaceAll(' ', '')
+
+         let inputCIN = document.getElementById('CIN').value.toLowerCase().replaceAll(' ', '')
 
 
-                if (datauserName=== inputName && datauserCIN  === inputCIN) {
-                    console.log("تم العثور على: " + dataUser[i].name);
+         let found = false;
 
-                    // إظهار مربع النتيجة
-                    document.getElementById("result").style.display = "block";
+         for (let i = 0; i < dataUser.length; i++) {
 
-                    // تعبئة البيانات
-                     document.getElementById('name').innerHTML =  dataUser[i].name;
-                     document.getElementById('CIN_info').innerHTML =  dataUser[i].CIN;
-                     document.getElementById('specialization').innerHTML =  dataUser[i].specialization;
-                     document.getElementById('dure').innerHTML =  dataUser[i].dure;
-                     document.getElementById('join').innerHTML =  dataUser[i].dateJoin;
-                     document.getElementById('end').innerHTML =  dataUser[i].dateEnd;
-                    
-                    found = true;
-                    document.getElementById('body').style.justifyContent = 'center';
-                    document.getElementById('degree').style.display = 'flex';
-                    document.querySelector('.typewriter-container').style.display = 'none';
-                    document.getElementById('littl-info').style.display = 'none';
-                    document.getElementById('backImg').style.display = 'none';
-                    document.querySelector('.deails').style.display = 'none';
-                    document.getElementById('err').style.display = 'none';
-                    document.querySelector('.container').style.display = 'none';
-                    break;                }
+            let datauserName = dataUser[i].name.toLowerCase().replaceAll(' ', '')
+            let datauserCIN = dataUser[i].CIN.toLowerCase().replaceAll(' ', '')
+
+
+            if (datauserName === inputName && datauserCIN === inputCIN) {
+               console.log("تم العثور على: " + dataUser[i].name);
+
+               // إظهار مربع النتيجة
+               document.getElementById("result").style.display = "block";
+
+               // تعبئة البيانات
+               document.getElementById('name').innerHTML = dataUser[i].name;
+               document.getElementById('CIN_info').innerHTML = dataUser[i].CIN;
+               document.getElementById('specialization').innerHTML = dataUser[i].specialization;
+               document.getElementById('dure').innerHTML = dataUser[i].dure;
+               document.getElementById('join').innerHTML = dataUser[i].dateJoin;
+               document.getElementById('end').innerHTML = dataUser[i].dateEnd;
+
+               found = true;
+               document.getElementById('body').style.justifyContent = 'center';
+               document.getElementById('degree').style.display = 'flex';
+               document.querySelector('.typewriter-container').style.display = 'none';
+               document.getElementById('littl-info').style.display = 'none';
+               document.getElementById('backImg').style.display = 'none';
+               document.querySelector('.deails').style.display = 'none';
+               document.getElementById('err').style.display = 'none';
+               document.querySelector('.container').style.display = 'none';
+               break;
             }
+         }
 
-            if (!found) {
-                document.getElementById('err').style.display = 'flex';
-                document.getElementById("result").style.display = "none";
+         if (!found) {
+            document.getElementById('err').style.display = 'flex';
+            document.getElementById("result").style.display = "none";
+         }
+      });
+   </script>
+   <script>
+
+      const words = [".تدريس اللغات.", "التدريس التطبيقي.", "التدريس عن بعد.", "التدريس الحضوري", "تكوينا معتمداً", "أكثر من 120 شعبة"];
+
+      let wordIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+      const textElement = document.getElementById("typewriter-text");
+
+      function typeEffect() {
+         const currentWord = words[wordIndex];
+
+         if (isDeleting) {
+
+            textElement.textContent = currentWord.substring(0, charIndex - 1);
+            charIndex--;
+         } else {
+
+            textElement.textContent = currentWord.substring(0, charIndex + 1);
+            charIndex++;
+         }
+
+         let typingSpeed = isDeleting ? 50 : 100;
+
+         if (!isDeleting && charIndex === currentWord.length) {
+            typingSpeed = 2000;
+            isDeleting = true;
+         }
+         else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            wordIndex++;
+
+            if (wordIndex === words.length) {
+               wordIndex = 0;
             }
-        });
-    </script>
-    <script>
-       
-        const words = [".تدريس اللغات.", "التدريس التطبيقي.", "تالتدريس عن بعد.", "التدريس الحضوري","تكوينا معتمداً","أكثر من 120 شعبة"];
+            typingSpeed = 500;
+         }
 
-        let wordIndex = 0; 
-        let charIndex = 0; 
-        let isDeleting = false; 
-        const textElement = document.getElementById("typewriter-text");
+         setTimeout(typeEffect, typingSpeed);
+      }
 
-        function typeEffect() {
-            const currentWord = words[wordIndex];
-
-            if (isDeleting) {
-              
-                textElement.textContent = currentWord.substring(0, charIndex - 1);
-                charIndex--;
-            } else {
-
-                textElement.textContent = currentWord.substring(0, charIndex + 1);
-                charIndex++;
-            }
-
-            let typingSpeed = isDeleting ? 50 : 100;
-
-            if (!isDeleting && charIndex === currentWord.length) {
-                typingSpeed = 2000; 
-                isDeleting = true;
-            }
-            else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                wordIndex++; 
-
-                if (wordIndex === words.length) {
-                    wordIndex = 0;
-                }
-                typingSpeed = 500; 
-            }
-
-            setTimeout(typeEffect, typingSpeed);
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            setTimeout(typeEffect, 1000); 
-        });
-    </script>
+      document.addEventListener("DOMContentLoaded", function () {
+         setTimeout(typeEffect, 1000);
+      });
+   </script>
 
 </body>
+
 </html>
