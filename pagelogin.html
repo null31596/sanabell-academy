@@ -833,6 +833,21 @@
 
       }
    </style>
+   <script src="https://unpkg.com/pdf-lib@1.4.0/dist/pdf-lib.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+   <style>
+      #previewTitle { text-align: center; margin-bottom: 4px; }
+      #previewHint { text-align: center; color: #555; margin-bottom: 16px; }
+      #previewBox { border: 1px solid #ccc; border-radius: 8px; overflow: hidden; background: #f4f4f4; min-height: 200px; }
+      #preview { width: 100%; height: auto; display: block; }
+      #resultActions { display: flex; gap: 10px; margin-top: 20px; }
+      #resultActions button {
+         flex: 1; height: 48px; font-size: 17px; font-family: inherit; font-weight: bold;
+         cursor: pointer; background: #1a1a1a; color: #fff; border: 0; border-radius: 10px;
+      }
+      #resultActions button:disabled { opacity: .5; cursor: wait; }
+      #resultActions button.secondary { background: #888; }
+   </style>
 </head>
 
 <body id="body">
@@ -877,13 +892,12 @@
 
    <div id="degree">
       <div id="result">
-         <div id="info">
-            <span>الاسم الكامل: <p id="name"></p></span>
-            <span>رقم البطاقة: <p id="CIN_info"></p></span>
-            <span>التخصص: <p id="specialization"></p></span>
-            <span>المدة: <p id="dure"></p></span>
-            <span>تاريخ الانضمام: <p id="join"></p></span>
-            <span>تاريخ التخرج: <p id="end"></p></span>
+         <h2 id="previewTitle">معاينة الاستمارة</h2>
+         <p id="previewHint">راجع بياناتك في الاستمارة، ثم اضغط على تحميل.</p>
+         <div id="previewBox"><canvas id="preview"></canvas></div>
+         <div id="resultActions">
+            <button id="downloadAgain">تحميل الاستمارة PDF</button>
+            <button id="back" class="secondary">رجوع</button>
          </div>
       </div>
    </div>
@@ -2570,54 +2584,33 @@
             dure: '12 mois',
             dateJoin: '01/03/2025',
             dateEnd: '01/03/2026'
-         },{
+         }, {
             name: 'RACHID SALAH',
             CIN: 'Z305393',
             specialization: 'MENUISERIE EN BOIS ET DÉCORATION',
             dure: '12 mois',
             dateJoin: '01/03/2025',
             dateEnd: '01/03/2026'
-         },{
+         }, {
             name: 'SALMA LABYAD',
             CIN: 'JA143865',
             specialization: 'L’ART DE LA PÂTISSERIE ET LA CRÉATION DE DESSERTS',
             dure: '12 mois',
             dateJoin: '01/03/2023',
             dateEnd: '01/03/2024'
-         },{
+         }, {
             name: 'SALKA LABYAD',
             CIN: 'JA167885',
             specialization: 'L’ART CULINAIRE ET TECHNIQUES DE CUISINE',
             dure: '12 mois',
             dateJoin: '01/03/2023',
             dateEnd: '01/03/2024'
-         },{
+         }, {
             name: 'SI MOHAMED BELMSAHEL',
             CIN: 'PA107603',
             specialization: 'MENUISERIE EN BOIS ET DÉCORATION',
             dure: '12 mois',
             dateJoin: '01/03/2025',
-            dateEnd: '01/03/2026'
-         },{
-            name: 'AHLAM KHAYARI',
-            CIN: 'BB128374',
-            specialization: 'GESTION D’INFORMATIQUE',
-            dure: '12 mois',
-            dateJoin: '01/03/2025',
-            dateEnd: '01/03/2026'
-         },{
-            name: 'MOHAMED IGHRI',
-            CIN: 'JC723967',
-            specialization: 'LA FABRICATION MÉCANIQUE GÉNÉRALE',
-            dure: '12 mois',
-            dateJoin: '01/03/2025',
-            dateEnd: '01/03/2026'
-         },{
-            name: 'SOUMAYA GUEDDAR',
-            CIN: 'AY18847',
-            specialization: 'L’ART CULINAIRE ET TECHNIQUES DE CUISINE',
-            dure: '24 mois',
-            dateJoin: '01/03/2024',
             dateEnd: '01/03/2026'
          }
 
@@ -2630,48 +2623,132 @@
                  dateJoin:'01/3/2025',
                  dateEnd:'1/03/2026' 
               },*/
-      document.getElementById('searsh').addEventListener('click', () => {
-         let inputName = document.getElementById('username').value.toLowerCase().replaceAll(' ', '')
+      // مواضع الحقول داخل attestation.pdf (الصفحة 1782 × 2596 نقطة)
+      const FIELD_POS = {
+         name:           { x: 415,  bottom: 1016 },
+         CIN:            { x: 1000, bottom: 1114 },
+         studentId:      { x: 955,  bottom: 1211 },
+         specialization: { x: 435,  bottom: 1309 },
+         dure:           { x: 620,  bottom: 1406 },
+         dateJoin:       { x: 600,  bottom: 1504 },
+         dateEnd:        { x: 725,  bottom: 1601 },
+         issueDate:      { x: 1470, bottom: 2084 },
+         qrName:         { x: 600,  bottom: 2172, size: 15 },
+         qrCIN:          { x: 845,  bottom: 2194, size: 15 }
+      };
 
-         let inputCIN = document.getElementById('CIN').value.toLowerCase().replaceAll(' ', '')
+      // يبني الـ PDF المعبّأ ويعيد بياناته
+      async function buildPDF(userData) {
+         const existingPdfBytes = await fetch('attestation.pdf').then(res => {
+            if (!res.ok) throw new Error("فشل في تحميل ملف الـ PDF");
+            return res.arrayBuffer();
+         });
+         const { PDFDocument, StandardFonts, rgb } = PDFLib;
+         const pdfDoc = await PDFDocument.load(existingPdfBytes);
+         const page = pdfDoc.getPages()[0];
+         const H = page.getHeight();
+         const font = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
+         const safe = t => String(t ?? '').replace(/[^\x20-\x7E\u00A0-\u00FF]/g, '?');
+         const put = (key, text) => {
+            if (!text) return;
+            const p = FIELD_POS[key];
+            page.drawText(safe(text), {
+               x: p.x, y: H - p.bottom + 15, size: p.size || 28, font, color: rgb(0.05, 0.05, 0.05)
+            });
+         };
+         put('name', userData.name);
+         put('CIN', userData.CIN);
+         put('studentId', userData.studentId);
+         put('specialization', userData.specialization);
+         put('dure', userData.dure);
+         put('dateJoin', userData.dateJoin);
+         put('dateEnd', userData.dateEnd);
+         put('issueDate', new Date().toLocaleDateString('fr-FR'));
+         put('qrName', userData.name);
+         put('qrCIN', userData.CIN);
+         return await pdfDoc.save();
+      }
 
+      // يرسم الصفحة الأولى من الـ PDF داخل canvas للمعاينة
+      async function renderPreview(pdfBytes) {
+         pdfjsLib.GlobalWorkerOptions.workerSrc =
+            'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+         const doc = await pdfjsLib.getDocument({ data: pdfBytes.slice(), disableFontFace: true, standardFontDataUrl: 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/standard_fonts/' }).promise;
+         const pg = await doc.getPage(1);
+         const canvas = document.getElementById('preview');
+         const viewport = pg.getViewport({ scale: 1400 / pg.getViewport({ scale: 1 }).width });
+         canvas.width = viewport.width;
+         canvas.height = viewport.height;
+         await pg.render({ canvasContext: canvas.getContext('2d'), viewport }).promise;
+      }
 
-         let found = false;
+      function downloadBytes(bytes, userData) {
+         const blob = new Blob([bytes], { type: 'application/pdf' });
+         const link = document.createElement('a');
+         link.href = URL.createObjectURL(blob);
+         link.download = `Attestation_${userData.name.replace(/\s+/g, '_')}.pdf`;
+         document.body.appendChild(link);
+         link.click();
+         document.body.removeChild(link);
+         setTimeout(() => URL.revokeObjectURL(link.href), 5000);
+      }
 
-         for (let i = 0; i < dataUser.length; i++) {
+      // إخفاء/إظهار عناصر الصفحة الرئيسية
+      const mainParts = () => [
+         document.querySelector('.typewriter-container'),
+         document.getElementById('littl-info'),
+         document.getElementById('backImg'),
+         document.querySelector('.deails'),
+         document.querySelector('.container')
+      ];
 
-            let datauserName = dataUser[i].name.toLowerCase().replaceAll(' ', '')
-            let datauserCIN = dataUser[i].CIN.toLowerCase().replaceAll(' ', '')
+      function showResultView() {
+         document.getElementById("result").style.display = "block";
+         document.getElementById('body').style.justifyContent = 'center';
+         document.getElementById('degree').style.display = 'flex';
+         mainParts().forEach(el => el && (el.style.display = 'none'));
+         document.getElementById('err').style.display = 'none';
+      }
 
+      function showMainView() {
+         document.getElementById("result").style.display = "none";
+         document.getElementById('body').style.justifyContent = '';
+         document.getElementById('degree').style.display = '';
+         mainParts().forEach(el => el && (el.style.display = ''));
+      }
 
-            if (datauserName === inputName && datauserCIN === inputCIN) {
-               console.log("تم العثور على: " + dataUser[i].name);
+      let currentUser = null;
+      let currentBytes = null;
+      const dlBtn = document.getElementById('downloadAgain');
+      dlBtn.addEventListener('click', () => currentBytes && downloadBytes(currentBytes, currentUser));
+      document.getElementById('back').addEventListener('click', showMainView);
 
-               // إظهار مربع النتيجة
-               document.getElementById("result").style.display = "block";
-
-               // تعبئة البيانات
-               document.getElementById('name').innerHTML = dataUser[i].name;
-               document.getElementById('CIN_info').innerHTML = dataUser[i].CIN;
-               document.getElementById('specialization').innerHTML = dataUser[i].specialization;
-               document.getElementById('dure').innerHTML = dataUser[i].dure;
-               document.getElementById('join').innerHTML = dataUser[i].dateJoin;
-               document.getElementById('end').innerHTML = dataUser[i].dateEnd;
-
-               found = true;
-               document.getElementById('body').style.justifyContent = 'center';
-               document.getElementById('degree').style.display = 'flex';
-               document.querySelector('.typewriter-container').style.display = 'none';
-               document.getElementById('littl-info').style.display = 'none';
-               document.getElementById('backImg').style.display = 'none';
-               document.querySelector('.deails').style.display = 'none';
-               document.getElementById('err').style.display = 'none';
-               document.querySelector('.container').style.display = 'none';
-               break;
-            }
+      async function showPreview(user) {
+         currentUser = user;
+         currentBytes = null;
+         dlBtn.disabled = true;
+         showResultView();
+         try {
+            currentBytes = await buildPDF(user);
+            await renderPreview(currentBytes);
+            dlBtn.disabled = false;
+         } catch (e) {
+            console.error(e);
+            alert("تعذر إنشاء الاستمارة. تأكد من وجود attestation.pdf بجانب الصفحة وأنك تفتح الموقع عبر خادم (وليس file://).");
+            showMainView();
          }
+      }
 
-         if (!found) {
+      document.getElementById('searsh').addEventListener('click', () => {
+         const norm = v => v.toLowerCase().replaceAll(' ', '');
+         const inputName = norm(document.getElementById('username').value);
+         const inputCIN = norm(document.getElementById('CIN').value);
+         const user = dataUser.find(u => norm(u.name) === inputName && norm(u.CIN) === inputCIN);
+
+         if (user) {
+            console.log("تم العثور على: " + user.name);
+            showPreview(user);
+         } else {
             document.getElementById('err').style.display = 'flex';
             document.getElementById("result").style.display = "none";
          }
