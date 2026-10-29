@@ -2634,8 +2634,8 @@
          dateJoin:       { x: 600,  bottom: 1504 },
          dateEnd:        { x: 725,  bottom: 1601 },
          issueDate:      { x: 1470, bottom: 2084 },
-         qrName:         { x: 600,  bottom: 2168, size: 15 },
-         qrCIN:          { x: 845,  bottom: 2190, size: 15 }
+         qrName:         { x: 600,  bottom: 2161, size: 15 },
+         qrCIN:          { x: 845,  bottom: 2185, size: 15 }
       };
 
       // يبني الـ PDF المعبّأ ويعيد بياناته
@@ -2662,7 +2662,7 @@
          if(studentId != null ){
              put('studentId', userData.studentId);
          }else{
-            put('studentId', R-XXX-XXX);
+            put('studentId', 'R-XXX-XXX');
          }
         
          put('specialization', userData.specialization);
@@ -2742,7 +2742,7 @@
             dlBtn.disabled = false;
          } catch (e) {
             console.error(e);
-            alert("تعذر إنشاء الاستمارة. تأكد من وجود attestation.pdf بجانب الصفحة وأنك تفتح الموقع عبر خادم (وليس file://).");
+
             showMainView();
          }
       }
