@@ -2608,6 +2608,7 @@
          }, {
             name: 'SI MOHAMED BELMSAHEL',
             CIN: 'PA107603',
+            studentId:'R-302-500',
             specialization: 'MENUISERIE EN BOIS ET DÉCORATION',
             dure: '12 mois',
             dateJoin: '01/03/2025',
@@ -2633,8 +2634,8 @@
          dateJoin:       { x: 600,  bottom: 1504 },
          dateEnd:        { x: 725,  bottom: 1601 },
          issueDate:      { x: 1470, bottom: 2084 },
-         qrName:         { x: 600,  bottom: 2172, size: 15 },
-         qrCIN:          { x: 845,  bottom: 2194, size: 15 }
+         qrName:         { x: 600,  bottom: 2168, size: 15 },
+         qrCIN:          { x: 845,  bottom: 2190, size: 15 }
       };
 
       // يبني الـ PDF المعبّأ ويعيد بياناته
@@ -2658,7 +2659,12 @@
          };
          put('name', userData.name);
          put('CIN', userData.CIN);
-         put('studentId', userData.studentId);
+         if(studentId != null ){
+             put('studentId', userData.studentId);
+         }else{
+            put('studentId', R-XXX-XXX);
+         }
+        
          put('specialization', userData.specialization);
          put('dure', userData.dure);
          put('dateJoin', userData.dateJoin);
